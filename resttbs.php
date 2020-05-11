@@ -1,6 +1,7 @@
 <?php
 	if(!@include("param.php")) die("Pour utiliser les examples, renommer param.exemple.php et renseignez les valeurs requises");
-
+	header( 'content-type: text/html; charset= iso-8859-1' );
+	
 	$urls = [
 		"PROD" => [
 			"PORTAL" => "https://portal.mahalo-app.io/oauth/token",
@@ -8,7 +9,11 @@
 		],
 		"PREPROD" => [
 			"PORTAL" => "https://portal-preprod.mahalo-app.io/oauth/token",
-			"WS" => "https://api-preprod.mahalo-app.io/"
+			"WS" => "https://api-preprod.mahalo-app.io/aboweb"
+		],
+		"LOCAL" => [
+				"PORTAL" => "https://localhost:8443/aboweb-portal/oauth/token",
+				"WS" => "https://localhost:8443/aboweb-ws"
 		]
 	];
 	
@@ -73,10 +78,13 @@
 			$opts[CURLOPT_POSTFIELDS] = $data_string;
 		}
 
-		curl_setopt_array($curl, $opts);		
+		curl_setopt_array($curl, $opts);
+		$executionStartTime = microtime(true);
 		$response = curl_exec($curl);
 		curl_close($curl);
-		print "REPONSE<br>";
+		$executionEndTime = microtime(true);
+		$seconds = $executionEndTime - $executionStartTime;
+		print "REPONSE en $seconds secondes<br>";
 		print_r($response);
 		print "<br>FIN REPONSE<br><br>";
 		$response = json_decode($response);

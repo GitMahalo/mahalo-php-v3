@@ -1,7 +1,21 @@
 <?php
 	require_once("../resttbs.php");
 	
-	//LECTURE DU REFERENTIEL Client
+	print "RECHERCHE DE Client<br>";
+	print "La recherche filtrée s'effectue grace à la structure filters.<br>";
+	print "Il est possible de filtrer sur un ou plusieurs champs<br>";
+	print "La recherche sur chaque champ est indépendante et prendre un des modes suivants :<br>";
+	print "startsWith (mode par défaut) ==> like %XXX<br>";
+	print "contains  ==> like %XXX%<br>";
+	print "endsWith  ==> like XXX%<br>";
+	print "equals ==> == XXX<br>";
+	
+	print "ATTENTION AVEC LES PERFORMANCES SUR LES NOT LIKE car le nombre de résultat peut-être conséquent<br>";
+	print "!startsWith (mode par défaut) ==> not like %XXX<br>";
+	print "!contains  ==> not like %XXX%<br>";
+	print "!endsWith  ==> not like XXX%<br>";
+	print "<br>";
+	print "<br>";
 	
 	$email = "monemail@gmail.com";
 	
@@ -14,7 +28,8 @@
 			"offset" => 0
 	];
 	
-	print "Recherche du client ayant l'email = ".$email."<br>";
+	//RECHERCHE AVEC EMAIL en mode equals
+	
 	$filters =  [ "email" => [
 			"value" =>  $email,
 			"matchMode"=> "equals"
@@ -28,11 +43,11 @@
 	print "Recherche du client ayant l'email = ".$email."<br>";
 	$response = callApiGet("/editeur/".REF_EDITEUR."/client", $token, $params);
 	
+	//RECHERCHE AVEC NOM ET PRENOM en mode equals
 	//La recherche n'est pas case sensitive
 	$prenom = "Robert";
 	$nom = "Martin";
 	
-	print "Recherche du client ayant comme nom et prenom = ".$nom." ".$prenom." <br>";
 	$filters =  [ "prenom" => [
 			"value" =>  $prenom,
 			"matchMode"=> "equals"
@@ -48,6 +63,56 @@
 	$response = callApiGet("/editeur/".REF_EDITEUR."/client/count", $token, $params);
 	
 	print "Recherche du client ayant comme nom et prenom = ".$nom." ".$prenom."<br>";
+	$response = callApiGet("/editeur/".REF_EDITEUR."/client", $token, $params);
+	
+	//RECHERCHE PAR NUMERO DE TELEPHONE en mode termine par
+	//La recherche n'est pas case sensitive
+	$modeStr = "termine par";
+	$mode="endsWith";
+	$telephone = "652430269";
+	
+	$filters =  [ "telephone" => [
+			"value" =>  $telephone,
+			"matchMode"=> $mode
+		]
+			
+	];
+	
+	$params["filters"] = json_encode($filters);
+	print "Nombre des clients dont le telephone ".$modeStr." ".$telephone."<br>";
+	$response = callApiGet("/editeur/".REF_EDITEUR."/client/count", $token, $params);
+	
+	print "Recherche des clients dont le telephone ".$modeStr." ".$telephone."<br>";
+	$response = callApiGet("/editeur/".REF_EDITEUR."/client", $token, $params);
+	
+	//RECHERCHE PAR NUMERO DE TELEPHONE en mode commence par
+	//La recherche n'est pas case sensitive
+	$modeStr = "commence par";
+	$mode="startsWith";
+	$telephone = "065243";
+	
+	$filters["telephone"]["matchMode"] = $mode;
+	
+	$params["filters"] = json_encode($filters);
+	print "Nombre des clients dont le telephone ".$modeStr." ".$telephone."<br>";
+	$response = callApiGet("/editeur/".REF_EDITEUR."/client/count", $token, $params);
+	
+	print "Recherche des clients dont le telephone ".$modeStr." ".$telephone."<br>";
+	$response = callApiGet("/editeur/".REF_EDITEUR."/client", $token, $params);
+	
+	//RECHERCHE PAR NUMERO DE TELEPHONE en mode contient
+	//La recherche n'est pas case sensitive
+	$modeStr = "contient";
+	$mode="contains";
+	$telephone = "65243";
+	
+	$filters["telephone"]["matchMode"] = $mode;
+	
+	$params["filters"] = json_encode($filters);
+	print "Nombre des clients dont le telephone ".$modeStr." ".$telephone."<br>";
+	$response = callApiGet("/editeur/".REF_EDITEUR."/client/count", $token, $params);
+	
+	print "Recherche des clients dont le telephone ".$modeStr." ".$telephone."<br>";
 	$response = callApiGet("/editeur/".REF_EDITEUR."/client", $token, $params);
 
 ?>
