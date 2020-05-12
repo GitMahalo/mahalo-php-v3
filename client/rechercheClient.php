@@ -65,6 +65,66 @@
 	print "Recherche du client ayant comme nom et prenom = ".$nom." ".$prenom."<br>";
 	$response = callApiGet("/editeur/".REF_EDITEUR."/client", $token, $params);
 	
+	//RECHERCHE PAR NUMERO DE PORTABLE en mode equals
+	//La recherche n'est pas case sensitive
+	$modeStr = " égale à ";
+	$mode="equals";
+	$telephone = "0682026204";
+	
+	$filters =  [ "portable" => [
+			"value" =>  $telephone,
+			"matchMode"=> $mode
+	]
+			
+	];
+	
+	$params["filters"] = json_encode($filters);
+	print "Nombre des clients dont le portable ".$modeStr." ".$telephone."<br>";
+	$response = callApiGet("/editeur/".REF_EDITEUR."/client/count", $token, $params);
+	
+	print "Recherche des clients dont le portable ".$modeStr." ".$telephone."<br>";
+	$response = callApiGet("/editeur/".REF_EDITEUR."/client", $token, $params);
+	
+	//RECHERCHE PAR NUMERO DE PORTABLE en mode termine par
+	//La recherche n'est pas case sensitive
+	$modeStr = "termine par";
+	$mode="endsWith";
+	$telephone = "82026204";
+	
+	$filters =  [ "portable" => [
+			"value" =>  $telephone,
+			"matchMode"=> $mode
+	]
+			
+	];
+	
+	$params["filters"] = json_encode($filters);
+	print "Nombre des clients dont le portable ".$modeStr." ".$telephone."<br>";
+	$response = callApiGet("/editeur/".REF_EDITEUR."/client/count", $token, $params);
+	
+	print "Recherche des clients dont le portable ".$modeStr." ".$telephone."<br>";
+	$response = callApiGet("/editeur/".REF_EDITEUR."/client", $token, $params);
+	
+	//RECHERCHE PAR NUMERO DE TELEPHONE en mode equals
+	//La recherche n'est pas case sensitive
+	$modeStr = " égale à ";
+	$mode="equals";
+	$telephone = "0251658974";
+	
+	$filters =  [ "telephone" => [
+			"value" =>  $telephone,
+			"matchMode"=> $mode
+	]
+			
+	];
+	
+	$params["filters"] = json_encode($filters);
+	print "Nombre des clients dont le telephone ".$modeStr." ".$telephone."<br>";
+	$response = callApiGet("/editeur/".REF_EDITEUR."/client/count", $token, $params);
+	
+	print "Recherche des clients dont le telephone ".$modeStr." ".$telephone."<br>";
+	$response = callApiGet("/editeur/".REF_EDITEUR."/client", $token, $params);
+	
 	//RECHERCHE PAR NUMERO DE TELEPHONE en mode termine par
 	//La recherche n'est pas case sensitive
 	$modeStr = "termine par";
