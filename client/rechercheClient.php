@@ -42,29 +42,7 @@
 	
 	print "Recherche du client ayant l'email = ".$email."<br>";
 	$response = callApiGet("/editeur/".REF_EDITEUR."/client", $token, $params);
-	
-	//RECHERCHE AVEC NOM ET PRENOM en mode equals
-	//La recherche n'est pas case sensitive
-	$prenom = "Robert";
-	$nom = "Martin";
-	
-	$filters =  [ "prenom" => [
-			"value" =>  $prenom,
-			"matchMode"=> "equals"
-			],
-			"nom" => [
-					"value" =>  $nom,
-					"matchMode"=> "equals"
-			]
-	];
-	
-	$params["filters"] = json_encode($filters);
-	print "Nombre de client ayant comme nom et prenom = ".$nom." ".$prenom."<br>";
-	$response = callApiGet("/editeur/".REF_EDITEUR."/client/count", $token, $params);
-	
-	print "Recherche du client ayant comme nom et prenom = ".$nom." ".$prenom."<br>";
-	$response = callApiGet("/editeur/".REF_EDITEUR."/client", $token, $params);
-	
+		
 	//RECHERCHE PAR NUMERO DE PORTABLE en mode equals
 	//La recherche n'est pas case sensitive
 	$modeStr = " égale à ";
