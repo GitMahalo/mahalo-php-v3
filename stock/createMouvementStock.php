@@ -29,7 +29,7 @@
 	
 	//TRAITEMENT DES CALL API
 	print "Creation d'un mouvement de stock <br><br>";
-	$response = callApiPost("/editeur/".REF_EDITEUR."/stock",$token, $mvt, $params);
+	$response = callApiPost("/editeur/".REF_EDITEUR."/stock/mouvement",$token, $mvt, $params);
 	
 	
 ?>
