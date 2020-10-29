@@ -9,13 +9,13 @@
 	$dt->setTimeZone(new DateTimeZone('UTC'));
 	
 	// Permet de récupérer les clients créé aujourd'hui depuis minuit
-	$filters = ["creation" => ["value" => [$dt->format('Y-m-d\TH:i:s.\0\0\0'),""], "matchMode" => "range"]];
+	$filters = ["c.creation" => ["value" => [$dt->format('Y-m-d\TH:i:s.\0\0\0'),""], "matchMode" => "range"]];
 	
 	$params = [
 			"maxResults" => 10, // champs obligatoire compris entre 1 et 100
 			"filters" => json_encode($filters),
 			"sortOrder" => 1, // permet de trier par ordre croissant (<=> 1) ou decroissant (<=> -1) sur le sortField
-			"sortField" => "creation" // permet de filtrer sur la colonne creation
+			"sortField" => "c.creation" // permet de filtrer sur la colonne creation
 	];
 	
 	
@@ -23,7 +23,7 @@
 	
 	$token = getToken(LOGIN,CREDENTIAL);
 	
-	print "Recupere tous les clients créés depuis ".$filters["creation"]["value"][0]." a l'heure courante<br><br>";
+	print "Recupere tous les clients créés depuis ".$filters["c.creation"]["value"][0]." a l'heure courante<br><br>";
 	$response = callApiGet("/editeur/".REF_EDITEUR."/client", $token, $params);
 
 	
@@ -39,9 +39,9 @@
 	$dt->setTimeZone(new DateTimeZone('UTC'));
 
 	// Permet de récupérer les clients créé aujourd'hui depuis minuit
-	$filters = ["creation" => ["value" => [$hier->format('Y-m-d\TH:i:s.\0\0\0'),$dt->format('Y-m-d\TH:i:s.\0\0\0')], "matchMode" => "range"]];
+	$filters = ["c.creation" => ["value" => [$hier->format('Y-m-d\TH:i:s.\0\0\0'),$dt->format('Y-m-d\TH:i:s.\0\0\0')], "matchMode" => "range"]];
 	
-	print "Recupere tous les clients créés depuis ".$filters["creation"]["value"][0]." a ".$filters["creation"]["value"][1]."<br><br>";
+	print "Recupere tous les clients créés depuis ".$filters["c.creation"]["value"][0]." a ".$filters["c.creation"]["value"][1]."<br><br>";
 	$response = callApiGet("/editeur/".REF_EDITEUR."/client", $token, $params);
 	
 ?>
