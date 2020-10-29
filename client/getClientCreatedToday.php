@@ -8,7 +8,7 @@
 	$dt->setTime(0, 0);
 	$dt->setTimeZone(new DateTimeZone('UTC'));
 	
-	// Permet de récupérer les clients créé aujourd'hui
+	// Permet de récupérer les clients créé aujourd'hui depuis minuit
 	$filters = ["creation" => ["value" => [$dt->format('Y-m-d\TH:i:s.\0\0\0'),""], "matchMode" => "range"]];
 	
 	$params = [
@@ -23,7 +23,25 @@
 	
 	$token = getToken(LOGIN,CREDENTIAL);
 	
-	print "Recupere tous les clients créés depuis ".$filters["creation"]["value"][0]." a la date courante<br><br>";
+	print "Recupere tous les clients créés depuis ".$filters["creation"]["value"][0]." a l'heure courante<br><br>";
+	$response = callApiGet("/editeur/".REF_EDITEUR."/client", $token, $params);
+
+	
+	$hier = new DateTime();
+	$hier->setTimeZone(new DateTimeZone('Europe/Paris'));
+	$hier->sub(new DateInterval('P1D'));
+	$hier->setTime(0, 0);
+	$hier->setTimeZone(new DateTimeZone('UTC'));
+
+	$dt = new DateTime();
+	$dt->setTimeZone(new DateTimeZone('Europe/Paris'));
+	$dt->setTime(0, 0);
+	$dt->setTimeZone(new DateTimeZone('UTC'));
+
+	// Permet de récupérer les clients créé aujourd'hui depuis minuit
+	$filters = ["creation" => ["value" => [$hier->format('Y-m-d\TH:i:s.\0\0\0'),$dt->format('Y-m-d\TH:i:s.\0\0\0')], "matchMode" => "range"]];
+	
+	print "Recupere tous les clients créés depuis ".$filters["creation"]["value"][0]." a ".$filters["creation"]["value"][1]."<br><br>";
 	$response = callApiGet("/editeur/".REF_EDITEUR."/client", $token, $params);
 	
 ?>
