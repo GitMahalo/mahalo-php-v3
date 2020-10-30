@@ -59,6 +59,17 @@
 		return callApi($urls[TARGET]["WS"].$url, $data_string, "POST", $headers);
 	}
 
+	function callApiPatch($url, $token, $datas) {
+		global $urls;
+		$data_string = json_encode($datas);
+		$headers = array(
+				'Authorization: BEARER '.$token,
+				'Content-Type: application/json',
+				'Content-Length: ' . strlen($data_string)
+			);
+		return callApi($urls[TARGET]["WS"].$url, $data_string, "POST", $headers);
+	}
+
 	function callApi($url, $data_string, $verb="GET", $headers) {
 		
 		$curl = curl_init();
