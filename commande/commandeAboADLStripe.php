@@ -6,15 +6,17 @@
 	/*Apres retour STRIPE pour creation CB - envoyer le TOKEN a ABOWEB pour creation CB dans Aboweb*/
 	/*le premier prelevement ne doit pas être execute par STRIPE mais par Aboweb. Stripe ne doit faiure qu'un empreinte de la CB */
 
-	//PREPARATION DE LA CB
-
-	$laCb=[];
 	//Le prestaire de paiement CB est selectionne automatiquement en fonction du parametrage dans Aboweb
-	$laCb["refSociete"] = REF_SOCIETE;
-	$laCb["cbCode"] = "STR02";
-	$laCb["token"] = "TEST_TOKEN01";//TOKEN retourne par Stripe lors de la capture de CB
-	$laCb["dateVal"] = "1910";
-	$laCb["number"] = "1664";
+	
+	// CREATION D'UNE CARTE BANCAIRE	
+	$laCb=[];
+	$laCb["token"] = 'SMLLwsqPLdt'; // token
+	// $laCb["cbCode"] = null; // pour une creation cb 
+	$laCb["dateVal"] = '2109'; // date d'expiration de la cb au format 'yyMM'
+	$laCb["firstNumbers"] = 1234; // premiers chiffres d'une cb
+	$laCb["lastNumbers"] = 9876; // derniers chiffres d'une cb
+	$laCb["titulaire"] = 'NOM PRENOM'; // nom prenom du titulaire de la cb
+	$laCb["refPrestataire"] = 1; // r�f�rence du prestataire de paiement
 
 	//PREPARATION DE LA COMMANDE
 
