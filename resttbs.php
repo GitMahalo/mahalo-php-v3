@@ -24,8 +24,7 @@
 	function callApiGet($url, $token, $datas = null) {
 		global $urls;
 		$headers = array(
-				'Authorization: BEARER '.$token,
-				'Content-Type: application/json'
+				'Authorization: BEARER '.$token
 			);
 		
 		$url_with_datas = $url;
@@ -41,8 +40,7 @@
 		global $urls;
 		$headers = array(
 				'Authorization: BEARER '.$token,
-				'Accept: application/pdf',
-				'Content-type: application/pdf',
+				'Accept: application/pdf'
 			);
 		
 		$url_with_datas = $url;
@@ -127,6 +125,17 @@
 			transferHeader($headers);
 			$body = substr($response, $header_size);
 			echo $body;
+			/*
+			## Alternative 1 : contenu transformé en data-url encodé en base64, accessible depuis un lien.
+			
+			$contentType = curl_getinfo($curl, CURLINFO_CONTENT_TYPE);
+			echo '<a href="data:'.$contentType.';base64,'.base64_encode($response).'" download="download.pdf">Download</a>';
+			
+			## Alternative 2 : enregistrement du contenu dans un répertoire du serveur
+			
+			file_put_contents('download.pdf', $response);
+			
+			*/
 		}
 		curl_close($curl);
 		return $response;
