@@ -36,6 +36,23 @@
 		
 		return callApi($urls[TARGET]["WS"].$url_with_datas, "", "GET", $headers);
 	}
+	
+	function callApiGetTypePdf($url, $token, $datas = null) {
+		global $urls;
+		$headers = array(
+				'Authorization: BEARER '.$token,
+				'Accept: application/pdf',
+				'Content-type: application/pdf',
+			);
+		
+		$url_with_datas = $url;
+		
+		if($datas !== null){
+			$url_with_datas .= '?'.http_build_query($datas);
+		}
+		
+		return callApi($urls[TARGET]["WS"].$url_with_datas, "", "GET", $headers, false);
+	}
 
 	function callApiPut($url, $token, $datas) {
 		global $urls;
@@ -70,7 +87,7 @@
 		return callApi($urls[TARGET]["WS"].$url, $data_string, "POST", $headers);
 	}
 
-	function callApi($url, $data_string, $verb="GET", $headers) {
+	function callApi($url, $data_string, $verb="GET", $headers, $json=true, $token=false) {
 		
 		$curl = curl_init();
 
@@ -88,23 +105,45 @@
 			$opts[CURLOPT_POST] = true;
 			$opts[CURLOPT_POSTFIELDS] = $data_string;
 		}
+		if($json === false && $token === false){// cas ou on veut afficher un pdf (mais pas pour l'appel WS Token)
+			$opts[CURLOPT_HEADER] = true;
+		}
 
 		curl_setopt_array($curl, $opts);
 		$executionStartTime = microtime(true);
 		$response = curl_exec($curl);
-		curl_close($curl);
 		$executionEndTime = microtime(true);
 		$seconds = $executionEndTime - $executionStartTime;
-		print "REPONSE en $seconds secondes<br>";
-		print_r($response);
-		print "<br>FIN REPONSE<br><br>";
-		$response = json_decode($response);
+		if($json === true){ // on n'affiche pas de message pour le pdf (cas ou on appelle le WS Token)
+			print "REPONSE en $seconds secondes<br>";
+			print_r($response);
+			print "<br>FIN REPONSE<br><br>";
+		}
+		if($json === true || $token === true){
+			$response = json_decode($response);
+		} else {
+			$header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
+			$headers = substr($response, 0, $header_size);
+			transferHeader($headers);
+			$body = substr($response, $header_size);
+			echo $body;
+		}
+		curl_close($curl);
 		return $response;
 	}
 
-	function getToken($username, $password) {
+	function transferHeader($headers) {
+		$dataHeader = explode("\r\n", $headers);
+		foreach($dataHeader as $val) {
+			header($val);
+		}
+	}
+
+	function getToken($username, $password, $json=true) {
 		global $urls;
-		print "Recuperation du token<br>";
+		if($json === true){ // on affiche que dans le cas ou on veut du json
+			print "Recuperation du token<br>";
+		}
 		
 		$params = [
 			'grant_type' => 'password',
@@ -119,9 +158,10 @@
 			'Content-Type: application/x-www-form-urlencoded'
 		);
 		
-		$response = callApi($urls[TARGET]["PORTAL"], $data_string, "POST", $headers);
-		
-		print "TOKEN API : ".$response->access_token."<br><br>";
+		$response = callApi($urls[TARGET]["PORTAL"], $data_string, "POST", $headers, $json, true);
+		if($json === true){
+			print "TOKEN API : ".$response->access_token."<br><br>";
+		}
 		return $response->access_token;
 		
 		/*$curl = curl_init();
