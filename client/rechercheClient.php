@@ -2,16 +2,16 @@
 	require_once("../resttbs.php");
 	
 	print "RECHERCHE DE Client<br>";
-	print "La recherche filtrée s'effectue grace à la structure filters.<br>";
+	print "La recherche filtrÃ©e s'effectue grace Ã  la structure filters.<br>";
 	print "Il est possible de filtrer sur un ou plusieurs champs<br>";
-	print "La recherche sur chaque champ est indépendante et prendre un des modes suivants :<br>";
-	print "startsWith (mode par défaut) ==> like %XXX<br>";
+	print "La recherche sur chaque champ est indÃ©pendante et prendre un des modes suivants :<br>";
+	print "startsWith (mode par dÃ©faut) ==> like %XXX<br>";
 	print "contains  ==> like %XXX%<br>";
 	print "endsWith  ==> like XXX%<br>";
 	print "equals ==> == XXX<br>";
 	
-	print "ATTENTION AVEC LES PERFORMANCES SUR LES NOT LIKE car le nombre de résultat peut-être conséquent<br>";
-	print "!startsWith (mode par défaut) ==> not like %XXX<br>";
+	print "ATTENTION AVEC LES PERFORMANCES SUR LES NOT LIKE car le nombre de rÃ©sultat peut-Ãªtre consÃ©quent<br>";
+	print "!startsWith (mode par dÃ©faut) ==> not like %XXX<br>";
 	print "!contains  ==> not like %XXX%<br>";
 	print "!endsWith  ==> not like XXX%<br>";
 	print "<br>";
@@ -45,7 +45,7 @@
 		
 	//RECHERCHE PAR NUMERO DE PORTABLE en mode equals
 	//La recherche n'est pas case sensitive
-	$modeStr = " égale à ";
+	$modeStr = " Ã©gale Ã  ";
 	$mode="equals";
 	$telephone = "0682026204";
 	
@@ -85,7 +85,7 @@
 	
 	//RECHERCHE PAR NUMERO DE TELEPHONE en mode equals
 	//La recherche n'est pas case sensitive
-	$modeStr = " égale à ";
+	$modeStr = " Ã©gale Ã  ";
 	$mode="equals";
 	$telephone = "0251658974";
 	
