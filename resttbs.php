@@ -118,6 +118,7 @@
 			print "<br>FIN REPONSE<br><br>";
 		}
 		if($json === true || $token === true){
+			header('Content-type: text/html; charset=utf-8');
 			$response = json_decode($response);
 		} else {
 			$header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
