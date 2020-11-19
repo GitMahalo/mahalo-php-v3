@@ -153,4 +153,40 @@
 	print "Recherche des clients dont le telephone ".$modeStr." ".$telephone."<br>";
 	$response = callApiGet("/editeur/".REF_EDITEUR."/client", $token, $params);
 
+	//RECHERCHE PAR ancien_client en mode equals
+	//La recherche n'est pas case sensitive
+	$client = "4944496";
+	
+	$filters =  [ 
+			"ancienCode" => [
+				"value" =>  $client,
+				"matchMode"=> "equals"
+		]
+	];
+	
+	$params["filters"] = json_encode($filters);
+	print "Nombre des clients dont ancien_client = ".$client."<br>";
+	$response = callApiGet("/editeur/".REF_EDITEUR."/client/count", $token, $params);
+	
+	print "Recherche des clients dont ancien_client = ".$client."<br>";
+	$response = callApiGet("/editeur/".REF_EDITEUR."/client", $token, $params);
+	
+	//RECHERCHE PAR code_client en mode equals
+	//La recherche n'est pas case sensitive
+	$client = "4944495";
+	
+	$filters =  [ 
+			"codeClient" => [
+				"value" =>  $client,
+				"matchMode"=> "equals"
+		]
+	];
+	
+	$params["filters"] = json_encode($filters);
+	print "Nombre des clients dont code_client = ".$client."<br>";
+	$response = callApiGet("/editeur/".REF_EDITEUR."/client/count", $token, $params);
+	
+	print "Recherche des clients dont code_client = ".$client."<br>";
+	$response = callApiGet("/editeur/".REF_EDITEUR."/client", $token, $params);
+
 ?>

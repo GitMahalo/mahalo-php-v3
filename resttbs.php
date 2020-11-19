@@ -24,7 +24,8 @@
 	function callApiGet($url, $token, $datas = null) {
 		global $urls;
 		$headers = array(
-				'Authorization: BEARER '.$token
+				'Authorization: BEARER '.$token,
+				'Content-type: text/html; charset=utf-8'
 			);
 		
 		$url_with_datas = $url;
@@ -118,7 +119,6 @@
 			print "<br>FIN REPONSE<br><br>";
 		}
 		if($json === true || $token === true){
-			header('Content-type: text/html; charset=utf-8');
 			$response = json_decode($response);
 		} else {
 			$header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
