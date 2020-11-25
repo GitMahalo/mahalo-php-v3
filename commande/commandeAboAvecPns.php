@@ -3,6 +3,8 @@
 
 	//PREPARATION DE LA COMMANDE
 
+	// Pour forcer le pns en abonnement : WS_FORCE_DEBUT_ABO = T
+
 	// Creation du tampon client
 	$commandeDuclient = [];
 	$commandeDuclient["codeClient"] = "5019007"; //codeClient retourne par l'api client get (lecture) ou post (creation)
