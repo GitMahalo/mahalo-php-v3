@@ -22,14 +22,14 @@
 	$token = getToken(LOGIN,CREDENTIAL);
 	
 	$params = [
-			"maxResults" => 1, // champ obligatoire compris entre 0 et 100
+			"maxResults" => 10, // champ obligatoire compris entre 0 et 100
 			"offset" => 0
 	];
 	
 	// Remarque le contact peut être de type 0 : client - 1 : tiers - 2 : payé par
 
-	//RECHERCHE AVEC typeClient = 1 cad de type 'tiers'
-	$typeClient = "1";
+	//RECHERCHE AVEC typeClient = 0 ou 1 cad de type 'client' OU 'tiers'
+	$typeClient = ["0","1"];
 	$filters =  [ "typeClient" => [
 			"value" =>  $typeClient,
 			"matchMode"=> "equals"
@@ -38,10 +38,10 @@
 	
 	$params["filters"] = json_encode($filters);
 
-	print "Nombre de client de type = ".$typeClient."<br>";
+	print "Nombre de client de type = 'client' OU 'tiers'<br>";
 	$response = callApiGet("/editeur/".REF_EDITEUR."/client/count", $token, $params);
 	
-	print "Recherche du client de type = ".$typeClient."<br>";
+	print "Recherche du client de type = 'client' OU 'tiers'<br>";
 	$response = callApiGet("/editeur/".REF_EDITEUR."/client", $token, $params);
 
 	
