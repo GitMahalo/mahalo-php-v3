@@ -17,19 +17,21 @@
 	print "<br>";
 	print "<br>";
 	
-	$email = "monemail@gmail.com";
 	
 	//TRAITEMENT DES CALL API
 	
 	$token = getToken(LOGIN,CREDENTIAL);
 	
 	$params = [
-			"maxResults" => 1,
-			"offset" => 0
+		"maxResults" => 1, // champs obligatoire compris entre 1 et 100
+		"offset" => 0,
+		"sortOrder" => -1, // permet de trier par ordre croissant (<=> 1) ou decroissant (<=> -1) sur le sortField
+		"sortField" => "codeClient" // permet de filtrer sur la colonne codeClient
 	];
 	
 	//RECHERCHE AVEC EMAIL en mode equals
 	
+	$email = "lenouveauclient@email.fr";
 	$filters =  [ "email" => [
 			"value" =>  $email,
 			"matchMode"=> "equals"
@@ -87,7 +89,7 @@
 	//La recherche n'est pas case sensitive
 	$modeStr = " égale à ";
 	$mode="equals";
-	$telephone = "0251658974";
+	$telephone = "0492157770";
 	
 	$filters =  [ "telephone" => [
 			"value" =>  $telephone,
@@ -107,13 +109,12 @@
 	//La recherche n'est pas case sensitive
 	$modeStr = "termine par";
 	$mode="endsWith";
-	$telephone = "652430269";
+	$telephone = "0269";
 	
 	$filters =  [ "telephone" => [
 			"value" =>  $telephone,
 			"matchMode"=> $mode
 		]
-			
 	];
 	
 	$params["filters"] = json_encode($filters);
@@ -127,9 +128,13 @@
 	//La recherche n'est pas case sensitive
 	$modeStr = "commence par";
 	$mode="startsWith";
-	$telephone = "065243";
+	$telephone = "0492";
 	
-	$filters["telephone"]["matchMode"] = $mode;
+	$filters =  [ "telephone" => [
+		"value" =>  $telephone,
+		"matchMode"=> $mode
+	]
+];
 	
 	$params["filters"] = json_encode($filters);
 	print "Nombre des clients dont le telephone ".$modeStr." ".$telephone."<br>";
@@ -142,7 +147,7 @@
 	//La recherche n'est pas case sensitive
 	$modeStr = "contient";
 	$mode="contains";
-	$telephone = "65243";
+	$telephone = "21577";
 	
 	$filters["telephone"]["matchMode"] = $mode;
 	
@@ -155,7 +160,7 @@
 
 	//RECHERCHE PAR ancien_client en mode equals
 	//La recherche n'est pas case sensitive
-	$client = "4944496";
+	$client = "436458001";
 	
 	$filters =  [ 
 			"ancienCode" => [
@@ -173,7 +178,7 @@
 	
 	//RECHERCHE PAR code_client en mode equals
 	//La recherche n'est pas case sensitive
-	$client = "4944495";
+	$client = "743084";
 	
 	$filters =  [ 
 			"codeClient" => [
