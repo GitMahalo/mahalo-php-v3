@@ -5,18 +5,18 @@
 	$client = [];		
 	$client["email"] = 'lenouveauclient@email.fr';
 	$client["typeClient"] = 0; //type de client (0 = normal, 1 = Tiers, 2 = Paye Par)
-	$client["origineAbm"] = "ABM"; //Origine du client
 	$client["civilite"] = 'M';
-	$client["nom"] = 'LE CLIENT';
-	$client["prenom"] = 'LE CLIENT';
-	$client["societe"] = 'CL';
-	$client["adresse1"] = '';
-	$client["adresse2"] = '24 RUE DES FLEURS';
-	$client["adresse3"] = '';
-	$client["cp"] = '92100';
-	$client["ville"] = 'BOULOGNE BILLANCOURT';
-	$client["motPasseAbm"] = 'LEMOTDEPASSE';
+	$client["nom"] = 'NOM';
+	$client["prenom"] = 'PRENOM ';
+	// $client["adresse1"] = '';
+	$client["adresse2"] = '24 RUE DES TESTS';
+	// $client["adresse3"] = '';
+	$client["cp"] = '35000';
+	$client["ville"] = 'RENNES';
 	$client["codeIsoPays"] = "FR";
+	$client["portable"] = "0682026204";
+	// $client["bic"] = "BDFEFR2L";
+	// $client["iban"] = "FR7630001007941234567890185";
 	
 	//TRAITEMENT DES CALL API
 	
