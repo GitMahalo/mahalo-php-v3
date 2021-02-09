@@ -1,7 +1,7 @@
 <?php
 	require_once("../resttbs.php");
 	
-	//LECTURE DU REFERENTIEL Client
+	//LECTURE DU REFERENTIEL Adresse
 	
 	$refAdresse = 81494;
 	

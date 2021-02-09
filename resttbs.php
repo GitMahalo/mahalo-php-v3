@@ -83,7 +83,7 @@
 				'Content-Type: application/json',
 				'Content-Length: ' . strlen($data_string)
 			);
-		return callApi($urls[TARGET]["WS"].$url, $data_string, "POST", $headers);
+		return callApi($urls[TARGET]["WS"].$url, $data_string, "PATCH", $headers);
 	}
 
 	function callApi($url, $data_string, $verb="GET", $headers, $json=true, $token=false) {
