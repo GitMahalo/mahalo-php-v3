@@ -5,7 +5,7 @@
 	$codeClient = 2052929; // code client du client à modifier - Obligatoire
 
 	$client = [];
-	$client["codeClient"] = $codeClient;	
+	$client["codeClient"] = $codeClient; // OBLIGATOIRE	
 	// Ajout uniquement des données qu'on veut modifier.
 	$client["email"] = 'email@test.com';
 	$client["motPasseAbm"] = "123456";
@@ -16,7 +16,7 @@
 	$token = getToken(LOGIN,CREDENTIAL);
 	
 	print "Modification du client codeClient = ".$codeClient."<br>";
-	$response = callApiPost("/editeur/".REF_EDITEUR."/client", $token, $client);
+	$response = callApiPatch("/editeur/".REF_EDITEUR."/client/".$codeClient, $token, $client);
 	
 	print "codeClient du client modifié = ".$response->value->codeClient."<br><br>";
 ?>
