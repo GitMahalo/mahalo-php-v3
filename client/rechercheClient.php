@@ -193,5 +193,22 @@
 	
 	print "Recherche des clients dont code_client = ".$client."<br>";
 	$response = callApiGet("/editeur/".REF_EDITEUR."/client", $token, $params);
+	
+	//RECHERCHE PAR date de creation en mode range
+	// pour cette recherche on précise sur quelle table on recherche 
+	// car il peut y avoir confusion entre la table t_adresses (adr) et t_client(c)
+	$filters =  [ 
+		"adr.creation" => [
+			"value" =>  ["2021-01-15T00:00:00+01:00","2021-01-16T00:00:00+01:00"],
+			"matchMode"=> "range"
+		]
+	];
+
+	$params["filters"] = json_encode($filters);
+	print "Nombre des clients entre 2 dates<br>";
+	$response = callApiGet("/editeur/".REF_EDITEUR."/client/count", $token, $params);
+
+	print "Recherche des clients entre 2 dates<br>";
+	$response = callApiGet("/editeur/".REF_EDITEUR."/client", $token, $params);
 
 ?>
