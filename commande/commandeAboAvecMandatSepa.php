@@ -25,6 +25,7 @@
 	$ligneCommande0["codeTarif"] = "F-RW-MIGRATION"; // codeTarif associé au refTarif
 
 	$ligneCommande0["quantite"] = 1;
+	// il faut activer la variable système CREATE_REGLEMENT_FOR_RIB_COMMANDE
 	$ligneCommande0["modePaiement"] = 3; //1 cheque - 2 CB - 3 RIB (creation de Mandat necessaire en amont) - 4 Virement - 5 Paypal - 6 Prelevement CB (creation de CB necessaire en amont)
 	$ligneCommande0["typeAdresseLiv"] = 0; //pour ne pas gerer d'adresse de livraison (l'adresse de livraison est geree via la nouvelle API createOrUpdateAdresse)
 	$commandeDuclient["lignesCommande"][] = $ligneCommande0;
