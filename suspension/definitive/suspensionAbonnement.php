@@ -1,8 +1,9 @@
 <?php
-	require_once("../resttbs.php");
+
+	require_once("../../resttbs.php");
 	
 	// Suspension d'un abonnement	
-	$refAbonnement = 4; // reference abonnement
+	$refAbonnement = 99999; // reference abonnement
 	$refMotifSuspension = 11; // reference motif suspension
 	$numeroSuspension = null; // Numéro de parution
 	$dateSuspension = null; // Date de parution

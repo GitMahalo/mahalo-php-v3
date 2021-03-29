@@ -64,7 +64,7 @@
 		return callApi($urls[TARGET]["WS"].$url, $data_string, "PUT", $headers);
 	}
 
-	function callApiPost($url, $token, $datas) {
+	function callApiPost($url, $token, $datas, $datasQuery) {
 		global $urls;
 		$data_string = json_encode($datas);
 		$headers = array(
@@ -72,7 +72,13 @@
 				'Content-Type: application/json',
 				'Content-Length: ' . strlen($data_string)
 			);
-		return callApi($urls[TARGET]["WS"].$url, $data_string, "POST", $headers);
+		
+		$url_with_datas = $url;
+
+		if($datasQuery !== null){
+			$url_with_datas .= '?'.http_build_query($datasQuery);
+		}
+		return callApi($urls[TARGET]["WS"].$url_with_datas, $data_string, "POST", $headers);
 	}
 
 	function callApiPatch($url, $token, $datas) {
