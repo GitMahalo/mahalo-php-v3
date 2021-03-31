@@ -64,7 +64,7 @@
 		return callApi($urls[TARGET]["WS"].$url, $data_string, "PUT", $headers);
 	}
 
-	function callApiPost($url, $token, $datas, $datasQuery) {
+	function callApiPost($url, $token, $datas, $datasQuery = null) {
 		global $urls;
 		$data_string = json_encode($datas);
 		$headers = array(
