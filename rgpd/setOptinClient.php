@@ -1,4 +1,4 @@
 <?php
-	// Les optins sont définis pour chaque clients
+	// Les optins sont définies pour chaque clients
 	// Voir le fichier d'exemple client/setOptinClient.php
 ?>
