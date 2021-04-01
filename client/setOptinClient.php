@@ -5,7 +5,7 @@
 	$codeClient = 11000;
 	
 	$optinClient = [];
-	$optinClient["refOptin"] = 5; //Obtenu par lecture du ref�rentiel d'optin : /editeur/rgpd
+	$optinClient["refOptin"] = 5; //Référence obtenue par lecture du reférentiel d'optin : /editeur/rgpd
 	$optinClient["value"] = true; //true ou false, valeur de l'optin
 	
 	//TRAITEMENT DES CALL API
