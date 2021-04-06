@@ -7,8 +7,8 @@
 	$codeCs = "ACTAACJC";
 	
 	$params = [
-			"refCs1" => $refCs1, // 500 pour l'origine abonnement / 506 pour l'origine réabonnement
-			"codeCs" => $codeCs // codeCs qu'on retrouve dans le code_relance de l'abonnement
+			"refCs1" => $refCs1, // 500 pour l'origine abonnement / 506 pour l'origine reabonnement
+			"codeCs" => $codeCs // OBLIGATOIRE codeCs qu'on retrouve dans le code_relance de l'abonnement
 	];
 	
 	//TRAITEMENT DES CALL API
@@ -32,5 +32,5 @@
 	
 	print "Recupere tous les tarifs lies a l'origine ".$refCs." <br><br>";
 	$response = callApiGet("/editeur/".REF_EDITEUR."/cs2/".$refCs."/tarif", $token, $params);
-	
+
 ?>
