@@ -197,10 +197,21 @@
 	//RECHERCHE PAR date de creation en mode range
 	// pour cette recherche on précise sur quelle table on recherche 
 	// car il peut y avoir confusion entre la table t_adresses (adr) et t_client(c)
+	$hier = new DateTime();
+	$hier->setTimeZone(new DateTimeZone('Europe/Paris'));
+	$hier->sub(new DateInterval('P1D'));
+	$hier->setTime(0, 0);
+	$hier->setTimeZone(new DateTimeZone('UTC'));
+
+	$dt = new DateTime();
+	$dt->setTimeZone(new DateTimeZone('Europe/Paris'));
+	$dt->setTime(0, 0);
+	$dt->setTimeZone(new DateTimeZone('UTC'));
+
 	$filters =  [ 
 		"adr.creation" => [
-			"value" =>  ["2021-01-15T00:00:00+01:00","2021-01-16T00:00:00+01:00"],
-			"matchMode"=> "range"
+			["value" => [$hier->format('Y-m-d\TH:i:s.\0\0\0'),$dt->format('Y-m-d\TH:i:s.\0\0\0')], 
+			"matchMode" => "range"]];
 		]
 	];
 

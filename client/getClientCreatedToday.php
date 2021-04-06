@@ -9,6 +9,8 @@
 	$dt->setTimeZone(new DateTimeZone('UTC'));
 	
 	// Permet de récupérer les clients créé aujourd'hui depuis minuit
+	// pour cette recherche on précise sur quelle table on recherche 
+	// car il peut y avoir confusion entre la table t_adresses (adr) et t_client(c)
 	$filters = ["c.creation" => ["value" => [$dt->format('Y-m-d\TH:i:s.\0\0\0'),""], "matchMode" => "range"]];
 	
 	$params = [
@@ -39,6 +41,8 @@
 	$dt->setTimeZone(new DateTimeZone('UTC'));
 
 	// Permet de récupérer les clients créé aujourd'hui depuis minuit
+	// pour cette recherche on précise sur quelle table on recherche 
+	// car il peut y avoir confusion entre la table t_adresses (adr) et t_client(c)
 	$filters = ["c.creation" => ["value" => [$hier->format('Y-m-d\TH:i:s.\0\0\0'),$dt->format('Y-m-d\TH:i:s.\0\0\0')], "matchMode" => "range"]];
 	
 	print "Recupere tous les clients créés depuis ".$filters["c.creation"]["value"][0]." a ".$filters["c.creation"]["value"][1]."<br><br>";
