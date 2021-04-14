@@ -4,7 +4,7 @@
 	///////// COMMANDE SIMPLE PAIEMENT STRIPE ABONNEMENT ADL /////
 
 	/*Apres retour STRIPE pour creation CB - envoyer le TOKEN a ABOWEB pour creation CB dans Aboweb*/
-	/*le premier prelevement ne doit pas être execute par STRIPE mais par Aboweb. Stripe ne doit faiure qu'un empreinte de la CB */
+	/*le premier prelevement ne doit pas être execute par STRIPE mais par Aboweb. Stripe ne doit faire qu'une empreinte de la CB */
 
 	//Le prestaire de paiement CB est selectionne automatiquement en fonction du parametrage dans Aboweb
 	
@@ -16,7 +16,7 @@
 	$laCb["firstNumbers"] = 1234; // premiers chiffres d'une cb
 	$laCb["lastNumbers"] = 9876; // derniers chiffres d'une cb
 	$laCb["titulaire"] = 'NOM PRENOM'; // nom prenom du titulaire de la cb
-	$laCb["refPrestataire"] = 1; // r�f�rence du prestataire de paiement
+	$laCb["refPrestataire"] = 1; // reference du prestataire de paiement (la valeur refPrestataire est à adapter selon l'editeur)
 
 	//PREPARATION DE LA COMMANDE
 
