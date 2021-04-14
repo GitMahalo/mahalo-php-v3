@@ -15,7 +15,7 @@
 	$cb["firstNumbers"] = 1234; // premiers chiffres d'une cb
 	$cb["lastNumbers"] = 9876; // derniers chiffres d'une cb
 	$cb["titulaire"] = 'NOM PRENOM'; // nom prenom du titulaire de la cb
-	$cb["refPrestataire"] = 1; // reference du prestataire de paiement
+	$cb["refPrestataire"] = 1; // reference du prestataire de paiement (la valeur refPrestataire est à adapter selon l'editeur)
 
 	
 	//TRAITEMENT DES CALL API
