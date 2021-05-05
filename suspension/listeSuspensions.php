@@ -4,33 +4,64 @@
 	// Liste de suspensions	
 	$refTitre = null; // reference du titre
 	$codeClient = null; // code client
-	$offset = null; // position du premier résultat
+	$offset = null; // position du premier resultat
 	
 	$params = [
 			"refTitre" => $refTitre, // non obligatoire
 			"codeClient" => $codeClient,// non obligatoire
 			"offset" => $offset,// non obligatoire 
-			"maxResults" => 5 // par défaut le nombre maximum de résultat vaut 10
+			"maxResults" => 20 // OBLIGATOIRE le nombre maximum de resultat vaut 100
 	];
 	
 	$token = getToken(LOGIN,CREDENTIAL);
 
-	print "Récupération des 5 premières suspensions : <br><br>";
+	print "Nombre totales suspensions : <br><br>";
+	$response = callApiGet("/editeur/".REF_EDITEUR."/suspension/count", $token, $params);
+
+	print "Recuperation des premieres suspensions : <br><br>";
 	$response = callApiGet("/editeur/".REF_EDITEUR."/suspension", $token, $params);
 	
-	// Liste de suspensions	
+	// Liste de suspensions	pour un codeClient donnÃ©
 	$refTitre = null; // reference du titre
-	$codeClient = 58456; // code client
-	$offset = 1; // position du premier résultat
+	$codeClient = 132445; // code client
+	$offset = null; // position du premier resultat
 	
 	$params = [
 			"refTitre" => $refTitre, // non obligatoire
 			"codeClient" => $codeClient,// non obligatoire
 			"offset" => $offset,// non obligatoire 
-			"maxResults" => 10 // par défaut le nombre maximum de résultat vaut 10
+			"maxResults" => 10 // OBLIGATOIRE le nombre maximum de resultat vaut 100
 	];
 	
 	$token = getToken(LOGIN,CREDENTIAL);
-	print "<br><br>Récupération des suspensions pour le client : ".$codeClient."<br><br>";
+
+	print "Nombre totales suspensions pour le codeClient :".$codeClient." <br><br>";
+	$response = callApiGet("/editeur/".REF_EDITEUR."/suspension/count", $token, $params);
+
+	print "<br><br>Recuperation des suspensions pour le client : ".$codeClient."<br><br>";
+	$response = callApiGet("/editeur/".REF_EDITEUR."/suspension", $token, $params);
+		
+	// Liste de suspensions	en fonction du type de motif
+	$refTitre = null; // reference du titre
+	$codeClient = null; // code client
+	$offset = null; // position du premier resultat
+	
+	$refMotifSuspension = 2;
+	$filters = ["refMotifSuspension" => ["value" => $refMotifSuspension, "matchMode" => "equals"]]; 
+
+	$params = [
+			"refTitre" => $refTitre, // non obligatoire
+			"codeClient" => $codeClient,// non obligatoire
+			"filters" => json_encode($filters), // non obligatoire
+			"offset" => $offset,// non obligatoire 
+			"maxResults" => 10 // OBLIGATOIRE le nombre maximum de resultat vaut 100
+	];
+	
+	$token = getToken(LOGIN,CREDENTIAL);
+
+	print "Nombre totales suspensions dont la refMotifSuspension :".$refMotifSuspension." <br><br>";
+	$response = callApiGet("/editeur/".REF_EDITEUR."/suspension/count", $token, $params);
+
+	print "Recuperation des premieres suspensions dont la refMotifSuspension :".$refMotifSuspension." <br><br>";
 	$response = callApiGet("/editeur/".REF_EDITEUR."/suspension", $token, $params);
 ?>
