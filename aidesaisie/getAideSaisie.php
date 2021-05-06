@@ -1,9 +1,7 @@
 <?php
 	require_once("../resttbs.php");
 	
-	//LECTURE DU REFERENTIEL Client
-	
-	$codeClient = 1000;
+	//LECTURE DU REFERENTIEL CS
 	
 	//TRAITEMENT DES CALL API
 	
