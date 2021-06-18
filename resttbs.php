@@ -5,7 +5,7 @@
 	$urls = [
 		"PROD" => [
 			"PORTAL" => "https://portal.mahalo-app.io/oauth/token",
-			"WS" => "https://api.mahalo-app.io/"
+			"WS" => "https://api.mahalo-app.io/aboweb"
 		],
 		"PREPROD" => [
 			"PORTAL" => "https://portal-preprod.mahalo-app.io/oauth/token",
