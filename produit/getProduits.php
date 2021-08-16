@@ -4,7 +4,7 @@
 	
 	$token = getToken(LOGIN,CREDENTIAL);
 	
-	// Liste des catégories	
+	// Liste des produits
 	$refBoutique = 1; // OBLIGATOIRE (correspond à la référence boutique - mettre 1 lorsqu'il n'y a qu'une seule boutique gérée)
 
     $params = [
