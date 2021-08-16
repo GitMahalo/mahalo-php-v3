@@ -11,7 +11,7 @@
     $params = [
 		"maxResults" => 10, // OBLIGATOIRE compris entre 1 et 100
         "refCategorie" => $refCategorie,
-        "sortOrder" => 1, // permet de trier par ordre croissant (<=> 1) ou d�croissant (<=> -1) sur le sortField
+        "sortOrder" => 1, // permet de trier par ordre croissant (<=> 1) ou décroissant (<=> -1) sur le sortField
         "sortField" => "codeSelectionShop.position" // permet de filtrer sur la position des produits au sein d'une catégorie
     ];
 
