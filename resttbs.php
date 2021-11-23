@@ -1,5 +1,5 @@
 <?php
-	if(!@include("param.php")) die("Pour utiliser les examples, renommer param.exemple.php et renseignez les valeurs requises");
+	if(!@include("param.php")) die("Pour utiliser les exemples, renommer param.exemple.php et renseignez les valeurs requises");
 	header( 'content-type: text/html; charset= iso-8859-1' );
 	
 	$urls = [
