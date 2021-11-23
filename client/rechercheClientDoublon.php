@@ -6,7 +6,7 @@
 	print "La recherche s'effectue soit :<br>";
     print "- par le modèle de doublon présent par défaut sur l'entité société.<br>";
     print "- en passant la référence du modèle de doublon à utiliser<br>";
-	print "<span style='color: red'>Attention tous les critères actifs du modèles de doublon doivent être renseignés, les vides ou null seront ignorés et aucun doublon ne sera retournée dans ce cas</span></span><br>";
+	print "<span style='color: red'>Attention tous les critères actifs du modèles de doublon doivent être renseignés, les vides ou null seront ignorés et aucun doublon ne sera retourné dans ce cas</span></span><br>";
     print "La recherche est non sensible à la casse et aux caractères spéciaux<br>";
 	print "<br>";
 	print "<br>";
