@@ -33,10 +33,10 @@
 	
 	$email = "lenouveauclient@email.fr";
 	$filters =  [ "email" => [
-			"value" =>  $email,
-			"matchMode"=> "equals"
-			]
-		];
+		"value" =>  $email,
+		"matchMode"=> "equals"
+		]
+	];
 	
 	$params["filters"] = json_encode($filters);
 	print "Nombre de client ayant l'email = ".$email."<br>";
@@ -211,7 +211,7 @@
 	$filters =  [ 
 		"adr.creation" => [
 			["value" => [$hier->format('Y-m-d\TH:i:s.\0\0\0'),$dt->format('Y-m-d\TH:i:s.\0\0\0')], 
-			"matchMode" => "range"]];
+			"matchMode" => "range"]
 		]
 	];
 
