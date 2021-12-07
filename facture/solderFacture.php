@@ -1,46 +1,57 @@
 <?php
 	require_once("../resttbs.php");
+	header( 'content-type: text/html; charset= utf-8' );
 
 	//TRAITEMENT DES CALL API
 	
 	$token = getToken(LOGIN,CREDENTIAL);
+
+	$modePaiement = 'CB ABM';
+	$refFacture = 91562;
 	
-	print "Seul les factures one shot doivent être mis à jour via cet API !";
+	print "<b>Seul les factures one shot doivent être mis à jour via cet API !</b><br>";
 
-	print "Seul le mode de paiement CB ABM doit être utilisé";
+	print "<b>Seul le mode de paiement $modePaiement doit être utilisé</b><br><br>";
 
-	print "1- Récupération des infos de la facture à solder";
+	print "1- Récupération des infos de la facture à solder<br>";
 
 	$params = [];
-	$params["refFacture"] = 91561;
+	$params["refFacture"] = $refFacture;
 
 	$response = callApiGet("/editeur/".REF_EDITEUR."/reglement/buildParFacture", $token, $params);
 
 	$reglement = $response->value;
 
-	print "Vérification - Seules les factures dont le montant restant > 0 doivent être prise en compte : $reglement->montantRegle";
+	print "Vérification - Seules les factures dont le montant restant > 0 doivent être prise en compte.<br>";
+	print "Montant restant à payer : $reglement->montantRegle<br>";
+
 	if($reglement->montantRegle > 0) {
-		print "2- Récupérer la référence du mode de paiement CB ABM";
+		print "2- Récupérer la référence du mode de paiement $modePaiement<br>";
 
 		$params = [];
-		$params["libelle"] = 'CB ABM';
-		$params["refSociete"] = 1; //reference de la societe qui facture
+		$params["libelle"] = $modePaiement;
+		$params["refSociete"] = $reglement->refSociete;
 
 		$response = callApiGet("/editeur/".REF_EDITEUR."/modepaiement", $token, $params);
 
-		$refModePaiement=$response->value->refModePaiement;
+		if(count($response->value) == 1){
 
-		print "refModePaiement du moyen de paiement CB ABM : ".$refModePaiement."<br><br>";
+			$refModePaiement=$response->value[0]->refModePaiement;
 
-		$dt = new DateTime();
-		$dt->setTimeZone(new DateTimeZone('Europe/Paris'));
-		$dt->setTime(0, 0);
+			print "refModePaiement du moyen de paiement CB ABM : ".$refModePaiement."<br><br>";
 
-		//date du jour
-		$reglement->dateReglement = $dt->format('Y-m-d');
-		$reglement->refModePaiement = $refModePaiement;
+			$dt = new DateTime();
+			$dt->setTimeZone(new DateTimeZone('Europe/Paris'));
+			$dt->setTime(0, 0);
 
-		//création du réglement et solde de la facture
-		$response = callApiPost("/editeur/".REF_EDITEUR."/reglement", $token, $reglement);
+			//date du jour
+			$reglement->dateReglement = $dt->format('Y-m-d');
+			$reglement->refModePaiement = $refModePaiement;
+			$reglement->modePaiement = $modePaiement;
+
+			//création du réglement et solde de la facture
+			$response = callApiPost("/editeur/".REF_EDITEUR."/reglement", $token, $reglement);
+
+		}
 	}
 ?>
