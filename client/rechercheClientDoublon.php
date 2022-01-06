@@ -38,7 +38,6 @@
     $params = [
         "maxResults" => 1, // champs obligatoire compris entre 1 et 100
         "offset" => 0,
-        "sortOrder" => -1,
         "refModeleDoublon" => $refModeleDoublon,
     ];
 
