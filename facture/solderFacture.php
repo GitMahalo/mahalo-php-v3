@@ -48,7 +48,6 @@
 			$reglement->dateReglement = $dt->format('Y-m-d');
 			$reglement->refModePaiement = $refModePaiement;
 			$reglement->modePaiement = $modePaiement;
-			$reglement->solderFacture = true;
 
 			//création du réglement et solde de la facture
 			$response = callApiPost("/editeur/".REF_EDITEUR."/reglement", $token, $reglement);
