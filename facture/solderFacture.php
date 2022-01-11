@@ -7,7 +7,7 @@
 	$token = getToken(LOGIN,CREDENTIAL);
 
 	$modePaiement = 'CB ABM';
-	$refFacture = 91562;
+	$refFacture = 544220;
 	
 	print "<b>Seul les factures one shot doivent être mis à jour via cet API !</b><br>";
 
@@ -48,6 +48,7 @@
 			$reglement->dateReglement = $dt->format('Y-m-d');
 			$reglement->refModePaiement = $refModePaiement;
 			$reglement->modePaiement = $modePaiement;
+			$reglement->typeReglement = 1;
 
 			//création du réglement et solde de la facture
 			$response = callApiPost("/editeur/".REF_EDITEUR."/reglement", $token, $reglement);
