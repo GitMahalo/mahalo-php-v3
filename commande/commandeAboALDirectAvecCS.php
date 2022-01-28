@@ -33,7 +33,7 @@
 	$ligneCommande0["refTarif"] = 43173; // reference unique du tarif d'abonnement /* obligatoire */ obtenu par l'api tarif
 	$ligneCommande0["quantite"] = 1;
 	$ligneCommande0["modePaiement"] = 2; //1 cheque - 2 CB - 3 RIB (creation de Mandat necessaire en amont) - 4 Virement - 5 Paypal - 6 Prelevement CB (creation de CB necessaire en amont)
-	$ligneCommande0["montantTtc"] = 48; //le montant n'a pas d'importance car il ne peut pas etre force dans le cadre d'un abonnement
+	//$ligneCommande0["montantTtc"] = 48; //le montant n'a pas d'importance car il ne peut pas etre force dans le cadre d'un abonnement
 	$ligneCommande0["typeAdresseLiv"] = 0; //pour ne pas gerer d'adresse de livraison (l'adresse de livraison est geree via la nouvelle API createOrUpdateAdresse)
 	$ligneCommande0["codesSelection"] = [];
 	$ligneCommande0["codesSelection"][] = $leCsAbonnement; //CS sur l'abonnement
@@ -44,7 +44,7 @@
 	$ligneCommande1["quantite"] = 1;
 	$ligneCommande1["modePaiement"] = 2; //1 cheque - 2 CB - 3 RIB (creation de Mandat necessaire en amont) - 4 Virement - 5 Paypal - 6 Prelevement CB (creation de CB necessaire en amont)
 	$ligneCommande1["tauxRemise"] = 10; //taux de remise toujours en pourcentage /*optionnel*/
-	$ligneCommande1["montantTtc"] = 12; //le montant peut ete force, attention donc e passer le montant exact, sinon ne pas passer cette rubrique
+	//$ligneCommande1["montantTtc"] = 12; //le montant peut ete force, attention donc e passer le montant exact, sinon ne pas passer cette rubrique
 	$ligneCommande1["typeAdresseLiv"] = 0; //pour ne pas gerer d'adresse de livraison (l'adresse de livraison est geree via la nouvelle API createOrUpdateAdresse)
 
 	$ligneCommande1["codesSelection"] = [];

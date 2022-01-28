@@ -44,7 +44,7 @@
 	$ligneCommande0["refTarif"] = 474; // reference unique d'une formule /* obligatoire */ obtenu par l'api tarif
 	$ligneCommande0["quantite"] = 1;
 	$ligneCommande0["modePaiement"] = 2; //1 cheque - 2 CB - 3 RIB (creation de Mandat necessaire en amont) - 4 Virement - 5 Paypal - 6 Prelevement CB (creation de CB necessaire en amont)
-	$ligneCommande0["montantTtc"] = 7;
+	//$ligneCommande0["montantTtc"] = 7; //le montant peut ete force, attention donc e passer le montant exact, sinon ne pas passer cette rubrique
 	$ligneCommande0["typeAdresseLiv"] = 0; //pour ne pas gerer d'adresse de livraison (l'adresse de livraison est geree via la nouvelle API createOrUpdateAdresse)
 	$commandeDuclient["lignesCommande"][] = $ligneCommande0;
 	
@@ -52,7 +52,7 @@
 	$ligneCommande0BIS["refTarif"] = 474; // reference unique d'une formule /* obligatoire */ obtenu par l'api tarif
 	$ligneCommande0BIS["quantite"] = 1;
 	$ligneCommande0BIS["modePaiement"] = 2; //1 cheque - 2 CB - 3 RIB (creation de Mandat necessaire en amont) - 4 Virement - 5 Paypal - 6 Prelevement CB (creation de CB necessaire en amont)
-	$ligneCommande0BIS["montantTtc"] = 7;
+	//$ligneCommande0BIS["montantTtc"] = 7; //le montant peut ete force, attention donc e passer le montant exact, sinon ne pas passer cette rubrique
 	$ligneCommande0BIS["typeAdresseLiv"] = 0; //pour ne pas gerer d'adresse de livraison (l'adresse de livraison est geree via la nouvelle API createOrUpdateAdresse)
 	$commandeDuclient["lignesCommande"][] = $ligneCommande0BIS;
 
@@ -61,7 +61,7 @@
 	$ligneCommande1["quantite"] = 1;
 	$ligneCommande1["modePaiement"] = 2; //1 cheque - 2 CB - 3 RIB (creation de Mandat necessaire en amont) - 4 Virement - 5 Paypal - 6 Prelevement CB (creation de CB necessaire en amont)
 	// $ligneCommande1["tauxRemise"] = 10; //taux de remise toujours en pourcentage /*optionnel*/
-	$ligneCommande1["montantTtc"] = 39;
+	//$ligneCommande1["montantTtc"] = 39; //le montant peut ete force, attention donc e passer le montant exact, sinon ne pas passer cette rubrique
 	$ligneCommande1["typeAdresseLiv"] = 0; //pour ne pas gerer d'adresse de livraison (l'adresse de livraison est geree via la nouvelle API createOrUpdateAdresse)
 	$commandeDuclient["lignesCommande"][] = $ligneCommande1;
 
@@ -69,7 +69,7 @@
 	$ligneCommande2["refTarif"] = 32; // reference unique de l'article libre /* obligatoire */ obtenu par l'api tarif
 	$ligneCommande2["quantite"] = 1;
 	$ligneCommande2["modePaiement"] = 2; //1 cheque - 2 CB - 3 RIB (creation de Mandat necessaire en amont) - 4 Virement - 5 Paypal - 6 Prelevement CB (creation de CB necessaire en amont)
-	$ligneCommande2["montantTtc"] = 12.90; 
+	//$ligneCommande2["montantTtc"] = 12.90; //le montant peut ete force, attention donc e passer le montant exact, sinon ne pas passer cette rubrique
 	$ligneCommande2["typeAdresseLiv"] = 0; //pour ne pas gerer d'adresse de livraison (l'adresse de livraison est geree via la nouvelle API createOrUpdateAdresse)
 	$commandeDuclient["lignesCommande"][] = $ligneCommande2;
 
