@@ -11,8 +11,8 @@
 	
 	$codeClient = 1000;
 	$codesSelections = [];
-	$newType = 1003; //référence interne du paramètre CS à ajouter sur le client
-	$newLibelle = "VALEUR_DU_CS"; //Valeur à ajouter ou remplacer en fonction du mode de saisie du paramètre CS (valeur unique ou multiple)
+	$refCs = 1003; //référence interne du paramètre CS à ajouter sur le client
+	$valeur = "VALEUR_DU_CS"; //Valeur à ajouter ou remplacer en fonction du mode de saisie du paramètre CS (valeur unique ou multiple)
 	
 	//TRAITEMENT DES CALL API
 	
@@ -27,7 +27,7 @@
 	$response = callApiGet("/editeur/".REF_EDITEUR."/codeselection", $token, $params);
 	if(property_exists($response, 'value')) {
 		foreach($response->value as $p){
-			if($p->type == $newType){
+			if($p->type == $refCs){
 				$ajoutCs = false;
 				if($p->multiple){
 					//Ajout de la valeur dans la liste
@@ -42,7 +42,7 @@
 					$codesSelections[]= [
 							"id" => $p->id,
 							"type" => $p->type,
-							"libelle" => $newLibelle,
+							"libelle" => $valeur,
 					];
 				}
 			} else {
@@ -63,7 +63,7 @@
 	$response = callApiGet("/editeur/".REF_EDITEUR."/codeselection", $token, $params);
 	if(property_exists($response, 'value')) {
 		foreach($response->value as $p){
-			if($p->type == $newType){
+			if($p->type == $refCs){
 				$ajoutCs = false;
 				if($p->multiple){
 					//Ajout de la valeur dans la liste
@@ -78,7 +78,7 @@
 					$codesSelections[]= [
 							"id" => $p->id,
 							"type" => $p->type,
-							"libelle" => $newLibelle,
+							"libelle" => $valeur,
 					];
 				}
 			} else {
@@ -94,8 +94,8 @@
 	//ajout d'un cs pour le client (la liste des cs disponibles est obtenu par l'api aidesaisie)
 	if($ajoutCs){
 		$codesSelections[] = [
-				"type" => $newType, //cle du parametre code selection, correspond au champ id de la structure obtenu par l'api aidesaisie
-				"libelle" => $newLibelle // Quelque soit le type du Code de Sélection
+				"type" => $refCs, //cle du parametre code selection, correspond au champ id de la structure obtenu par l'api aidesaisie
+				"libelle" => $valeur // Quelque soit le type du Code de Sélection
 		];
 	}
 	
