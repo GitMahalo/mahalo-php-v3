@@ -11,6 +11,10 @@
 			"PORTAL" => "https://portal-preprod.mahalo-app.io/oauth/token",
 			"WS" => "https://api-preprod.mahalo-app.io/aboweb"
 		],
+        "RECETTE" => [
+            "PORTAL" => "https://portal-recette.mahalo-app.io/oauth/token",
+            "WS" => "https://api-recette.mahalo-app.io/aboweb"
+        ],
 		"LOCAL" => [
 				"PORTAL" => "https://localhost:8443/aboweb-portal/oauth/token",
 				"WS" => "https://localhost:8443/aboweb-ws"
@@ -96,6 +100,10 @@
 		
 		$curl = curl_init();
 
+        if(ORIGINE != ""){
+            $headers[] = "Origin: ".ORIGINE;
+        }
+
 		$opts = [
 			CURLOPT_URL => $url,
 			CURLOPT_POST => false,
@@ -120,9 +128,9 @@
 		$executionEndTime = microtime(true);
 		$seconds = $executionEndTime - $executionStartTime;
 		if($json === true){ // on n'affiche pas de message pour le pdf (cas ou on appelle le WS Token)
-			print "REPONSE en $seconds secondes<br>";
-			print_r($response);
-			print "<br>FIN REPONSE<br><br>";
+			print "<div><pre>REPONSE $verb $url en $seconds secondes</pre></div>";
+            print_rr($response);
+			print "<div><pre>FIN REPONSE</pre></div>";
 		}
 		if($json === true || $token === true){
 			$response = json_decode($response);
@@ -158,7 +166,7 @@
 	function getToken($username, $password, $json=true) {
 		global $urls;
 		if($json === true){ // on affiche que dans le cas ou on veut du json
-			print "Recuperation du token<br>";
+			print "<div><pre>Recuperation du token</pre></div>";
 		}
 		
 		$params = [
@@ -176,7 +184,7 @@
 		
 		$response = callApi($urls[TARGET]["PORTAL"], $data_string, "POST", $headers, $json, true);
 		if($json === true){
-			print "TOKEN API : ".$response->access_token."<br><br>";
+			print "<div><pre>TOKEN API : ".$response->access_token."</pre></div>";
 		}
 		return $response->access_token;
 		
@@ -219,5 +227,27 @@
 		return $response->access_token;*/
 	}
 
+
+    function print_rr($content, $return=false)
+    {
+        $output = '<div><pre>'
+            . print_r($content, true) . '</pre></div>';
+
+        if ($return) {
+            return $output;
+        } else {
+            echo $output;
+        }
+    }
+
+    function initHTML()
+    {
+        echo '<html><head> <link rel="stylesheet" href="../tbs.css"> </head><body>';
+    }
+
+	function endHTML()
+    {
+        echo '</body></html>';
+    }
 
 ?>

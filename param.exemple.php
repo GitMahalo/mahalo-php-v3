@@ -30,4 +30,6 @@
 		echo "param.php => la constante CREDENTIAL est requise";
 		die();
 	}
+
+    define("ORIGINE","");
 ?>
