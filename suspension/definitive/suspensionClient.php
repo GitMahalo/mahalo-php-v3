@@ -3,7 +3,9 @@
 	
 	// Suspension d'un client	
 	$codeClient = 236; // code client
-	$refMotifSuspension = 1; // reference motif suspension
+	//La liste des motifs de suspensions est disponible via l'exemple listeMotifsSuspensions.php
+	//ATTENTION, pour appliquer une suspension sur un client, il faut que celle-ci possède la propriété suspendreClient à true
+	$refMotifSuspension = x; // reference motif suspension
 	$reactiverMauvaisPayeur = false; // mauvais payeur
 	
 	
