@@ -4,6 +4,8 @@
 	// CREATION D'UNE CARTE BANCAIRE	
 	$cb = [];		
 	$cb["token"] = 'SMLLwsqPLdt'; // token (obligatoire)
+	// exemple de token pour une CB SLIMPAY : 'SMLLwsqPLdt'
+	// exemple de token pour une CB STRIPE (customer Stripe) : 'cus_HgjUPRlzIryloH'
 	// $cb["cbCode"] = null; // pour une creation cb 
 	$cb["dateVal"] = '2109'; // date d'expiration de la cb au format 'yyMM' (obligatoire pour les traitements de relance de CB expirés)
 	$cb["firstNumbers"] = 1234; // premiers chiffres d'une cb
