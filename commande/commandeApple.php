@@ -8,7 +8,7 @@
 	// Creation du tampon client
 	$commandeDuclient = [];
 	$commandeDuclient["codeClient"] = 2171823; //codeClient retourne par l'api client get (lecture) si absent, le client sera cree lors de la validation de la commande
-	$commandeDuclient["nePasModifierClient"] = 1; //permet de ne pas ecraser les donnees adresse client (a utiliser uniquement si le codeClient est passe en parametre)
+	$commandeDuclient["nePasModifierClient"] = 1; //Obligatoire permet de ne pas ecraser les donnees adresse client (a utiliser uniquement si le codeClient est passe en parametre)
 	$commandeDuclient["refSociete"] = REF_SOCIETE; //Obligatoire identifiant de la societe
 	$commandeDuclient["lignesCommande"] = array();
 
@@ -16,8 +16,9 @@
 	$ligneCommande0["refTarif"] = 39791; 
 	$ligneCommande0["quantite"] = 1;
 	$ligneCommande0["modePaiement"] = 7; //Mode de paiement Apple
-    $ligneCommande0["cs9"] = "APPLE"; //Mode de paiement Apple
-	$ligneCommande0["typeAdresseLiv"] = 0; //pour ne pas gerer d'adresse de livraison (l'adresse de livraison est geree via la nouvelle API createOrUpdateAdresse)
+    //Attention suivant votre configuration, il faudra soit renseigner cs9 soit cs10 pour flagguer l'origine de l'abonnement
+    $ligneCommande0["cs10"] = "APPLE"; // Ou $ligneCommande0["cs9"] = "APPLE";
+	$ligneCommande0["typeAdresseLiv"] = 0; //Obligatoire pour ne pas gerer d'adresse de livraison (l'adresse de livraison est geree via la nouvelle API createOrUpdateAdresse)
 	
 	$commandeDuclient["lignesCommande"][] = $ligneCommande0;
 
