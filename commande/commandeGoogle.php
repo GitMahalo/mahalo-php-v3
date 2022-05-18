@@ -16,8 +16,8 @@
 	$ligneCommande0["refTarif"] = 39791; 
 	$ligneCommande0["quantite"] = 1;
 	$ligneCommande0["modePaiement"] = 8; //Mode de paiement Google
-    //Attention suivant votre configuration, il faudra soit renseigner cs9 soit cs10 pour flagguer l'origine de l'abonnement
-    $ligneCommande0["cs10"] = "GOOGLE"; // Ou $ligneCommande0["cs9"] = "GOOGLE";
+	//Attention suivant votre configuration, il faudra soit renseigner cs9 soit cs10 pour flagguer l'origine de l'abonnement
+	$ligneCommande0["cs10"] = "GOOGLE"; // Ou $ligneCommande0["cs9"] = "GOOGLE";
 	$ligneCommande0["typeAdresseLiv"] = 0; //Obligatoire pour ne pas gerer d'adresse de livraison (l'adresse de livraison est geree via la nouvelle API createOrUpdateAdresse)
 	
 	$commandeDuclient["lignesCommande"][] = $ligneCommande0;

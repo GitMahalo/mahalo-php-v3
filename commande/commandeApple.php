@@ -16,8 +16,8 @@
 	$ligneCommande0["refTarif"] = 39791; 
 	$ligneCommande0["quantite"] = 1;
 	$ligneCommande0["modePaiement"] = 7; //Mode de paiement Apple
-    //Attention suivant votre configuration, il faudra soit renseigner cs9 soit cs10 pour flagguer l'origine de l'abonnement
-    $ligneCommande0["cs10"] = "APPLE"; // Ou $ligneCommande0["cs9"] = "APPLE";
+	//Attention suivant votre configuration, il faudra soit renseigner cs9 soit cs10 pour flagguer l'origine de l'abonnement
+	$ligneCommande0["cs10"] = "APPLE"; // Ou $ligneCommande0["cs9"] = "APPLE";
 	$ligneCommande0["typeAdresseLiv"] = 0; //Obligatoire pour ne pas gerer d'adresse de livraison (l'adresse de livraison est geree via la nouvelle API createOrUpdateAdresse)
 	
 	$commandeDuclient["lignesCommande"][] = $ligneCommande0;
