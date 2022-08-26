@@ -46,15 +46,17 @@
             $validationCommandes = $response->value;
             foreach ($validationCommandes as $validationCommande) {
                 if($validationCommande->codeErreur == '' && $validationCommande->noCommande == $noCommande) {
-                    $params = [
-                        "maxResults" => 1, // champs obligatoire compris entre 1 et 100
-                        "offset" => 0
-                    ];
 
                     $filters =  [ "noCommande" => [
                             "value" =>  $noCommande,
                             "matchMode"=> "equals"
                         ]
+                    ];
+
+                    $params = [
+                        "maxResults" => 1, // champs obligatoire compris entre 1 et 100
+                        "offset" => 0,
+                        "filters" => json_encode($filters),
                     ];
 
                     print "Recherche du reglement associe à la commande = ".$noCommande."<br>";
