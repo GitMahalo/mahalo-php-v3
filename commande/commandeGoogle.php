@@ -63,7 +63,7 @@
                         $reglement = $response->value;
                         print "Mise à jour du reglement ".$reglement->refReglement." avec le numAppelTransaction = $numTransactionGoogle<br>";
                         $reglement->numAppelTransaction = $numTransactionGoogle;
-                        $response = callApiPost("/editeur/".REF_EDITEUR."/reglement", $token, $reglement);
+                        $response = callApiPut("/editeur/".REF_EDITEUR."/reglement", $token, $reglement);
                     }
                 }
             }
