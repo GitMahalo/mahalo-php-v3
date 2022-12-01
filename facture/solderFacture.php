@@ -49,7 +49,7 @@
 			$reglement->refModePaiement = $refModePaiement;
 			$reglement->modePaiement = $modePaiement;
 			$reglement->typeReglement = 1;
-			// $reglement->reactiverAbonnementsSuspendus = true;
+			$reglement->reactiverAbonnementsSuspendus = true;
 
 			//création du réglement et solde de la facture
 			$response = callApiPost("/editeur/".REF_EDITEUR."/reglement", $token, $reglement);
