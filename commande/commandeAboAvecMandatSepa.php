@@ -6,8 +6,7 @@
 	// Creation du tampon client
 	$commandeDuclient = [];
 	$commandeDuclient["codeClient"] = "33792"; //codeClient retourne par l'api client get (lecture) ou post (creation)
-	// $commandeDuclient["refMandat"] = 1111; // référence du mandat associé au client 
-	// actuellement on n'a pas de WS pour la création de mandat donc pas possible de connaitre cette donnée :
+	// $commandeDuclient["refMandat"] = 1111; // référence du mandat associé au client - valeur retournée via https://github.com/GitMahalo/mahalo-php-v3/blob/master/mandat/creationMandat.php
 	// solution temporaire : renseigné le bic/iban
 	$commandeDuclient["bic"] = "BDFEFR2L"; 
 	$commandeDuclient["iban"] = "FR7630001007941234567890185";
