@@ -11,7 +11,7 @@
 	print "<h1>Suspensions temporaires</h1>";
 	print "<h2>Fonctionnement des suspensions temporaires</h1>";
 	print "<p>Attention les suspensions temporaires contrairement à la suspension définitive doivent se faire sur tous les abonnements d'une formule d'un client</p>";
-	print "<p>La fonction prends une liste d'abonnements (tous les abonnements de la formule) qui serviront de base à la fonction</p>";
+	print "<p>La fonction prend une liste d'abonnements (tous les abonnements de la formule) qui serviront de base à la fonction</p>";
 	print "<p>Le traitement effectif est le suivant : à partir des supports distincts issus de la liste des abonnements, on suspendra tous les abonnements de ces supports trouvés sur la période pour le client.</p>";
 	
 	print "<h2>Etapes</h2>";
