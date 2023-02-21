@@ -1,38 +1,27 @@
 <?php
-	require_once("../resttbs.php");
-	
-	//LECTURE DU REFERENTIEL Facture
-
-    // Recupere tous les abonnements d'une commande 
-	$filters = ["noCommande" => ["value" => "9957", "matchMode" => "equals"]];
-
+    require_once("../resttbs.php");
+    
+    //LECTURE DU REFERENTIEL Facture
+    
+    // Récupère la facture pour un numéro de commande donné
+    $extra = ["noCommande" => "123456"];
+    
     $params = [
-    "maxResults" => 10, // champs obligatoire compris entre 1 et 100
-    "filters" => json_encode($filters)
+        "maxResults" => 10, // champs obligatoire compris entre 1 et 100
+        "extraParams" => json_encode($extra)
     ];
     
     //TRAITEMENT DES CALL API
     
-    $token = getToken(LOGIN,CREDENTIAL);
+    $token = getToken(LOGIN, CREDENTIAL);
     
-    print "Recupere tous les abonnements d'une commande : ".$filters["noCommande"]["value"]." <br><br>";
-    $response = callApiGet("/editeur/".REF_EDITEUR."/abonnement", $token, $params);
-	
-	$abonnements = $response->value;
+    print "Récupère la facture pour un numéro de commande donné : " . $extra["noCommande"] . " <br><br>";
+    $response = callApiGet("/editeur/" . REF_EDITEUR . "/facture", $token, $extra);
     
-    foreach($abonnements as $abonnement){
-        $refFacture = $abonnement->refFacture;
-        
-        // Affichage des données de la facture
-        print "Affichage des données de la facture = ".$refFacture." <br><br>";
-        $response = callApiGet("/editeur/".REF_EDITEUR."/facture/".$refFacture, $token);
-
-        // Affichage des données des lignes de la facture
-        print "Affichage des données des lignes de la facture = ".$refFacture." <br><br>";
-        $response = callApiGet("/editeur/".REF_EDITEUR."/lignefacture/details/" . $refFacture, $token);
-        
-        // Affichage de la facture au format pdf
-        print "Pour avoir la facture au format PDF voir l'exemple : getFacturePdf.php avec la refFacture : ".$refFacture." <br><br>";
-  
-    }
+    $facture = $response->value;
+    
+    $refFacture = $facture->refFacture;
+    
+    // Affichage de la facture au format pdf
+    print "Pour avoir la facture au format PDF voir l'exemple : getFacturePdf.php avec la refFacture : " . $refFacture . " <br><br>";
 ?>
