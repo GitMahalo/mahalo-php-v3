@@ -5,11 +5,11 @@
 	
 
 	//EXEMPLE CREATION D'UN MANDAT PAYZEN
-  //Le prestataire de paiement configuré par défaut sur la société refSociete pour les paiements SEPA doit-être PAYZEN
+  	//Le prestataire de paiement configuré par défaut sur la société refSociete pour les paiements SEPA doit-être PAYZEN
 	$mandat = [];
 	$mandat["tokenSepa"] = '12341243-39a4b788ae9a401fba047ddxxxxxxxxx'; // token (obligatoire)
-  /* "tokenSepa" = "id" retournée par PAYZEN lors de la création du mandat, elle correspond à la concaténation de l'ID SITE et de la RUM. 
-		Exemple : https://payzen.io/fr-FR/webservices-payment/web-service-sepa/consulter-les-donnees-du-mandat.html */
+  	/* "tokenSepa" = "id" retournée par PAYZEN lors de la création du mandat, elle correspond à la concaténation de l'ID SITE et de la RUM. 
+	Exemple : https://payzen.io/fr-FR/webservices-payment/web-service-sepa/consulter-les-donnees-du-mandat.html */
 	$mandat["refSociete"] = $refSociete; // refSociete (obligatoire si plusieurs sociétés)
 	$mandat["codeClient"] = $codeClient; // codeClient (obligatoire)
 
