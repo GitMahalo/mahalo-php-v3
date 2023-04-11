@@ -3,10 +3,10 @@
 	$refSociete = 1;
 	$codeClient = 753208;
 	
-	//EXEMPLE CREATION D'UN MANDAT SLIMPAY
-  	//Le prestataire de paiement configuré par défaut sur la société refSociete pour les paiements SEPA doit-être SLIMPAY
+	//EXEMPLE CREATION D'UN MANDAT STRIPE
+  	//Le prestataire de paiement configuré par défaut sur la société refSociete pour les paiements SEPA doit-être STRIPE
 	$mandat = [];
-	$mandat["tokenSepa"] = 'SLMP04038XXXX'; // token (obligatoire)
+	$mandat["tokenSepa"] = 'cus_NeU2CFioxxxxxx'; // token STRIPE (obligatoire)
 	$mandat["refSociete"] = $refSociete; // refSociete (obligatoire si plusieurs sociétés)
 	$mandat["codeClient"] = $codeClient; // codeClient (obligatoire)
 
