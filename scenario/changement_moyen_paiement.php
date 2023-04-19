@@ -3,9 +3,9 @@ require_once("../resttbs.php");
 header( 'content-type: text/html; charset= utf-8' );
 
 // /!\ *******  Limitation ****** /!\
-// 1- Seuls les abonnements à durée libre sont eligibles (ADL)
-// 2- Seul les abonnements dont les offres sont en multipaiement CB / SEPA (typeReglement=8) sont eligibles
-// 3- Si il y a un chainage d'offre au cours des reconductions ADL, l'abonnement devra être arrivé sur la dernière offre pour être eligible
+// 1- Seuls les abonnements à durée libre sont éligibles (ADL)
+// 2- Seuls les abonnements dont les offres sont en multipaiement CB / SEPA (typeReglement=8) sont éligibles
+// 3- S'il y a un chainage d'offre au cours des reconductions ADL, l'abonnement devra être arrivé sur la dernière offre pour être éligible
 
 initHTML();
 
