@@ -2,6 +2,11 @@
 require_once("../resttbs.php");
 header( 'content-type: text/html; charset= utf-8' );
 
+// /!\ *******  Limitation ****** /!\
+// 1- Seuls les abonnements à durée libre sont eligibles (ADL)
+// 2- Seul les abonnements dont les offres sont en multipaiement CB / SEPA (typeReglement=8) sont eligibles
+// 3- Si il y a un chainage d'offre au cours des reconductions ADL, l'abonnement devra être arrivé sur la dernière offre pour être eligible
+
 initHTML();
 
 $codeClient=1474801;//Client concerné par le changement de moyen de paiement
@@ -35,16 +40,18 @@ if(property_exists($response, 'value') && $response->value !== null) {
 					if($abonnement->typeReglement == 6) { //Type Prel CB
 						$refMandat = 85258; // référence du nouveau mandat associé au client - valeur retournée via https://github.com/GitMahalo/mahalo-php-v3/blob/master/mandat/creationMandat.php
 						print_rr("----------------------------------------");
-						print_rr("Abonnement eligible => prevoir enregistrement du mandat à cette étape");
-						print_rr("Le mandat sera activé lors de la validation du premier réabonnement via l'installation de la commande");
+						print_rr("-- Abonnement eligible => Changement de CB vers SEPA autorisé --");
+						print_rr("-- Prévoir enregistrement du mandat à cette étape --");
+						print_rr("-- Le mandat sera activé lors de la validation du premier réabonnement via l'installation de la commande --");
 						print_rr("----------------------------------------");
 						print_rr("");
 						print_rr("Enregistrement du mandat OK => refMandat = ".$refMandat);
 						$aboEligible = true;
-					} else if($abonnement->typeReglement == 62) { //Type Prel SEPA
+					} else if($abonnement->typeReglement == 2) { //Type Prel SEPA
 						$refCb = 999999;
 						print_rr("----------------------------------------");
-						print_rr("Abonnement eligible => prevoir enregistrement de la CB à cette étape");
+						print_rr("-- Abonnement eligible => Changement de SEPA vers CB autorisé --");
+						print_rr("-- Prévoir enregistrement de la CB à cette étape --");
 						print_rr("----------------------------------------");
 						print_rr("");
 						print_rr("Enregistrement du mandat OK => refCb = ".$refCb);
