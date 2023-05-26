@@ -16,7 +16,7 @@
     $token = getToken(LOGIN, CREDENTIAL);
     
     print "Récupère la facture pour un numéro de commande donné : " . $extra["noCommande"] . " <br><br>";
-    $response = callApiGet("/editeur/" . REF_EDITEUR . "/facture", $token, $extra);
+    $response = callApiGet("/editeur/" . REF_EDITEUR . "/facture", $token, $params);
     
     $facture = $response->value;
     
