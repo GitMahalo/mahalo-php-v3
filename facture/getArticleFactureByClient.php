@@ -5,7 +5,7 @@
 
     $codeClientLivre = 540688;
 
-    // Recupere tous les abonnements d'une commande 
+    // Recupere toutes les lignes de factures liées à un article libre
 	$filters = [
         "codeClientLivraison.codeClient" => ["value" => $codeClientLivre, "matchMode" => "equals"],
         "avoirOn" => ["value" => false, "matchMode" => "equals"], //On exclu les avoirs
@@ -20,15 +20,13 @@
 
     $token = getToken(LOGIN,CREDENTIAL);
 
-    // Affichage des données de la facture
+    // Affichage des données
     print "Recupere les " . $params["maxResults"] . " premières lignes de factures d'articles libres du client : ".$codeClientLivre." <br><br>";
     $response = callApiGet("/editeur/".REF_EDITEUR."/article", $token, $params);
 
     $lignefactures = $response->value;
     print "Voici les articles achetés par le client ".$codeClientLivre." : <br><br>";
     foreach($lignefactures as $lignefacture){
-        // Affichage des données des lignes de la facture
         print "Code offre : ".$lignefacture->codeTarif." <br><br>";
-
     }
 ?>
