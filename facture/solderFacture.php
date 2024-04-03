@@ -10,14 +10,14 @@
 	$refFacture = 2027553;
 	$reactiverAbonnementsSupsendus = true;
 	
-	print "<b>Seul les factures one shot ou en 1 prel de type ADL doivent être mises à jour via ce scénario !</b><br>";
+	print "<b>Seul les factures one shot ou en 1 prel de type ADL doivent être mises à jour via ce scénario !</b><br><br>";
 
-	print "<b>Le paiement one shot doit être réalisée par l'appelant du montant de la facture avant exécution de ce scénario !</b><br>";
+	print "<b>Le paiement one shot doit être réalisé par l'appelant du montant de la facture avant exécution de ce scénario !</b><br><br>";
 
 	if($reactiverAbonnementsSupsendus) {
-		print "<b>Ce script réactivera les abonnements </b><br>";
+		print "<b>Ce script réactivera les abonnements </b><br><br>";
 	} else {
-		print "<b>Ce script ne réactivera pas les abonnements </b><br>";
+		print "<b>Ce script ne réactivera pas les abonnements </b><br><br>";
 	}
 
 	print "<b>Seul le mode de paiement $modePaiement doit être utilisé</b><br><br>";
@@ -32,10 +32,15 @@
 	$reglement = $response->value;
 
 	print "Vérification - Seules les factures dont le montant restant > 0 doivent être prise en compte.<br>";
-	print "Montant restant à payer : $reglement->montantRegle<br>";
+	print "Montant restant à payer : $reglement->montantRegle<br><br>";
 
 	if(!($reglement->typeReglement == 1 ||  $reglement->typeReglement == 6)) {
 		print "Erreur - le type de reglement n'est pas eligible : " . $reglement->typeReglement;
+		exit;
+	}
+
+	if($reglement->nbPrelevementsAFaire > 1) {
+		print "Erreur - la facture est en multiprelevement, elle ne peut pas etre traitée : nombre de prélevements = " . $reglement->nbPrelevementsAFaire;
 		exit;
 	}
 
