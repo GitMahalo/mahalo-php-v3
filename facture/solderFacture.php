@@ -7,9 +7,18 @@
 	$token = getToken(LOGIN,CREDENTIAL);
 
 	$modePaiement = 'CB ABM';
-	$refFacture = 544220;
+	$refFacture = 2027553;
+	$reactiverAbonnementsSupsendus = true;
 	
-	print "<b>Seul les factures one shot doivent être mis à jour via cet API !</b><br>";
+	print "<b>Seul les factures one shot ou en 1 prel de type ADL doivent être mises à jour via ce scénario !</b><br>";
+
+	print "<b>Le paiement one shot doit être réalisée par l'appelant du montant de la facture avant exécution de ce scénario !</b><br>";
+
+	if($reactiverAbonnementsSupsendus) {
+		print "<b>Ce script réactivera les abonnements </b><br>";
+	} else {
+		print "<b>Ce script ne réactivera pas les abonnements </b><br>";
+	}
 
 	print "<b>Seul le mode de paiement $modePaiement doit être utilisé</b><br><br>";
 
@@ -24,6 +33,11 @@
 
 	print "Vérification - Seules les factures dont le montant restant > 0 doivent être prise en compte.<br>";
 	print "Montant restant à payer : $reglement->montantRegle<br>";
+
+	if(!($reglement->typeReglement == 1 ||  $reglement->typeReglement == 6)) {
+		print "Erreur - le type de reglement n'est pas eligible : " . $reglement->typeReglement;
+		exit;
+	}
 
 	if($reglement->montantRegle > 0) {
 		print "2- Récupérer la référence du mode de paiement $modePaiement<br>";
@@ -51,12 +65,14 @@
 			$reglement->typeReglement = 1;
 
 			$paramsQuery = [
-				"reactiverAbonnementsSuspendus" => true
+				"reactiverAbonnementsSuspendus" => $reactiverAbonnementsSupsendus
 			];
 
 			//création du réglement et solde de la facture
 			$response = callApiPost("/editeur/".REF_EDITEUR."/reglement", $token, $reglement, $paramsQuery);
 
 		}
+	} else {
+		print "Erreur - la facture #" . $refFacture . " est deja soldée ";
 	}
 ?>
