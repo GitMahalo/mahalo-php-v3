@@ -2,16 +2,16 @@
 	require_once("../resttbs.php");
 	
 	print "RECHERCHE DE Client<br>";
-	print "La recherche filtrée s'effectue grace à la structure filters.<br>";
+	print "La recherche filtrÃ©e s'effectue grace Ã  la structure filters.<br>";
 	print "Il est possible de filtrer sur un ou plusieurs champs<br>";
-	print "La recherche sur chaque champ est indépendante et prendre un des modes suivants :<br>";
-	print "startsWith (mode par défaut) ==> like %XXX<br>";
+	print "La recherche sur chaque champ est indÃ©pendante et prendre un des modes suivants :<br>";
+	print "startsWith (mode par dÃ©faut) ==> like %XXX<br>";
 	print "contains  ==> like %XXX%<br>";
 	print "endsWith  ==> like XXX%<br>";
 	print "equals ==> == XXX<br>";
 	
-	print "ATTENTION AVEC LES PERFORMANCES SUR LES NOT LIKE car le nombre de résultat peut-être conséquent<br>";
-	print "!startsWith (mode par défaut) ==> not like %XXX<br>";
+	print "ATTENTION AVEC LES PERFORMANCES SUR LES NOT LIKE car le nombre de rÃ©sultat peut-Ãªtre consÃ©quent<br>";
+	print "!startsWith (mode par dÃ©faut) ==> not like %XXX<br>";
 	print "!contains  ==> not like %XXX%<br>";
 	print "!endsWith  ==> not like XXX%<br>";
 	print "<br>";
@@ -50,12 +50,12 @@
 	print "Recherche du client ayant comme nom et prenom = ".$nom." ".$prenom."<br>";
 	$response = callApiGet("/editeur/".REF_EDITEUR."/client", $token, $params);
 	
-	//RECHERCHE des clients qui possède un CS et qui ont le cp XXXX
+	//RECHERCHE des clients qui possÃ¨de un CS et qui ont le cp XXXX
 	//La recherche n'est pas case sensitive
 	$refCs = "500";
 	$cp = "35000";
 	
-	$filters =  [ "refCs" => [
+	$filters =  [ "cs.refCs.refCs" => [
 					"value" =>  $refCs,
 					"matchMode"=> "equals"
 			],
@@ -72,17 +72,17 @@
 	print "Recherche des clients ayant le cs=".$refCs." et le cp= ".$cp."<br>";
 	$response = callApiGet("/editeur/".REF_EDITEUR."/client", $token, $params);
 	
-	//RECHERCHE des clients qui possède un CS qui contient la valeur XXXX et qui ont le cp YYYY
+	//RECHERCHE des clients qui possÃ¨de un CS qui contient la valeur XXXX et qui ont le cp YYYY
 	//La recherche n'est pas case sensitive
 	$refCs = "500";
 	$valeurCS = "XXXX";
 	$cp = "35000";
 	
-	$filters =  [ "refCs" => [
+	$filters =  [ "cs.refCs.refCs" => [
 					"value" =>  $refCs,
 					"matchMode"=> "equals"
 			],
-			"libAlpha" => [
+			"cs.libAlpha" => [
 					"value" =>  $valeurCS,
 					"matchMode"=> "equals"
 			],
