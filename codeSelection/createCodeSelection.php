@@ -2,7 +2,7 @@
 	require_once("../resttbs.php");
 
 	/// DEPRECATED - SEE POST /editeur/{refEditeur}/{typeEntite}/{refEntite}/codeselection ///
-	/// IL n'est désomais plus utilse de passer la totalité des CS enregistré, mais seulement de modifier ///
+	/// IL n'est désomais plus utilse de passer la totalité des CS enregistré ///
 	////////////////////////////////////////////////////////////////////
 	///////// 
 	///////// ATTENTION La mise à jour des CS d'un client est en ANNULE ET REMLACE
