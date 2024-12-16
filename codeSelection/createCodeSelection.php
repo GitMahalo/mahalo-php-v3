@@ -1,18 +1,20 @@
 <?php
 	require_once("../resttbs.php");
-	
+
+	/// DEPRECATED - SEE POST /editeur/{refEditeur}/{typeEntite}/{refEntite}/codeselection ///
+	/// IL n'est dÃ©somais plus utilse de passer la totalitÃ© des CS enregistrÃ©, mais seulement de modifier ///
 	////////////////////////////////////////////////////////////////////
 	///////// 
-	///////// ATTENTION La mise à jour des CS d'un client est en ANNULE ET REMLACE
-	///////// Il faut donc au préalable faire une lecture des cs du client et repasser toute la liste
-	///////// Les cs manquants seront supprimés pour le client en question
+	///////// ATTENTION La mise Ã  jour des CS d'un client est en ANNULE ET REMLACE
+	///////// Il faut donc au prÃ©alable faire une lecture des cs du client et repasser toute la liste
+	///////// Les cs manquants seront supprimÃ©s pour le client en question
 	///////// 
 	////////////////////////////////////////////////////////////////////
 	
 	$codeClient = 1000;
 	$codesSelections = [];
-	$refCs = 1003; //référence interne du paramètre CS à ajouter sur le client
-	$valeur = "VALEUR_DU_CS"; //Valeur à ajouter ou remplacer en fonction du mode de saisie du paramètre CS (valeur unique ou multiple)
+	$refCs = 1003; //rÃ©fÃ©rence interne du paramÃ¨tre CS Ã  ajouter sur le client
+	$valeur = "VALEUR_DU_CS"; //Valeur Ã  ajouter ou remplacer en fonction du mode de saisie du paramÃ¨tre CS (valeur unique ou multiple)
 	
 	//TRAITEMENT DES CALL API
 	
@@ -95,7 +97,7 @@
 	if($ajoutCs){
 		$codesSelections[] = [
 				"type" => $refCs, //cle du parametre code selection, correspond au champ id de la structure obtenu par l'api aidesaisie
-				"libelle" => $valeur // Quelque soit le type du Code de Sélection
+				"libelle" => $valeur // Quelque soit le type du Code de SÃ©lection
 		];
 	}
 	
