@@ -12,7 +12,7 @@
 
 	// Creation du tampon client
 	$commandeDuclient = [];
-	// Le code client doit apartenir à un Tiers dans cas de livraison de type = 2
+	// Le code client doit apartenir à un Tiers dans cas de livraison de type = 7
 	$commandeDuclient["codeClient"] = 2023952; //codeClient retourne par l'api client get (lecture) si absent, le client sera cree lors de la validation de la commande
 	$commandeDuclient["nePasModifierClient"] = 1; //permet de ne pas ecraser les donnees adresse client
 	$commandeDuclient["refSociete"] = REF_SOCIETE; //OBLIGATOIRE identifiant de la societe
