@@ -3,7 +3,7 @@
 	
 	// CREATION D'UNE CARTE BANCAIRE	
 	$cb = [];		
-	$cb["token"] = 'SMLLwsqPLdt'; // token (obligatoire)
+	$cb["token"] = '0d9cbbd7ff0a123456978af6b61bb122'; // token (obligatoire)
 	$cb["dateVal"] = '2109'; // date d'expiration de la cb au format 'yyMM' (obligatoire pour les traitements de relance de CB expirés)
 	// cela permet de forcer le prestataire de paiement (la valeur refPrestataire est à adapter selon l'éditeur)
 	// cette info n'est pas nécessaire dans la majorité des cas
