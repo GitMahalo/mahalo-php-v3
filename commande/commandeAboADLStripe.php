@@ -31,6 +31,7 @@
 	$ligneCommande0["refTarif"] = 12; // reference unique de l'abonnement ADL obtenu par l'api tarif
 	$ligneCommande0["quantite"] = 1;
 	$ligneCommande0["modePaiement"] = 6; //6 pour prelevement sur CB. La commande sera integree avec generation d'une facture non soldee et X prelevements en fonction des parametrages du tarif
+	//$ligneCommande0["modePaiement"] = 2; //2 pour un prelevement sur CB pour lequel la première occurence de paiement est faite à la commande, coté site
 	$ligneCommande0["typeAdresseLiv"] = 0; //pour ne pas gerer d'adresse de livraison (l'adresse de livraison est geree via la nouvelle API createOrUpdateAdresse)
 	$commandeDuclient["lignesCommande"][] = $ligneCommande0;
 
@@ -56,3 +57,4 @@
 		$response = callApiPut("/editeur/".REF_EDITEUR."/commande/validate", $token, $commandes);
 	}
 ?>
+
