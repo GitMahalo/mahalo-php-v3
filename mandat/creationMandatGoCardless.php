@@ -6,7 +6,7 @@
 	//EXEMPLE CREATION D'UN MANDAT GOCARDLESS
   //Le prestataire de paiement configuré par défaut sur la société refSociete pour les paiements SEPA doit-être GOCARDLESS
 	$mandat = [];
-	$mandat["tokenSepa"] = 'CU01KGQ123ABCKKXZQX3CKBYTG0H'; // token GOCARDLESS (obligatoire)
+	$mandat["tokenSepa"] = 'MD01KM123YZ7QR4YD0RABCY4KAVW'; // token GOCARDLESS mandateId (obligatoire)
 	$mandat["refSociete"] = $refSociete; // refSociete (obligatoire si plusieurs sociétés)
 	$mandat["codeClient"] = $codeClient; // codeClient (obligatoire)
 
