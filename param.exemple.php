@@ -34,6 +34,10 @@
 		echo "param.php => la constante CREDENTIAL est requise";
 		die();
 	}*/
+	if(BEARERTOKEN === ""){
+		echo "param.php => la constante BEARERTOKEN est requise";
+		die();
+	}
 
     define("ORIGINE","");
 ?>
