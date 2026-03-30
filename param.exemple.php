@@ -1,15 +1,15 @@
 <?php	
 	define("TARGET","PREPROD"); // Valeur possible PROD / PREPROD
 	
-	define("REF_EDITEUR",null); // (Integer) Reference de l'éditeur Aboweb
-	define("REF_SOCIETE",null); // (Integer) Reference de la Société Aboweb (disponible via l'api GET editeur/{refEditeur}/societe)
+	define("REF_EDITEUR",null); // (Integer) Reference de l'éditeur Mahalo
+	define("REF_SOCIETE",null); // (Integer) Reference de la Société Mahalo (disponible via l'api GET editeur/{refEditeur}/societe)
 	
 	define("VALIDATION_COMMANDE",false); // Après l'insertion de la commande, il est possible de lancer la validation de la commande
 	
 	//Utilisateur pour la connexion aux API
 	//deprecated - see https://github.com/GitMahalo/mahalo-php-v3/wiki/R%C3%A9cup%C3%A9ration-du-Token-d'authentification
 	define("LOGIN","deprecated");
-	define("CREDENTIAL","deprecated");
+	define("CREDENTIAL","deprecated"); //Votre bearer token, il est permanent et vous est communiqué par Opper sur demande auprès de notre support
 
 	define("BEARERTOKEN","");
 	
