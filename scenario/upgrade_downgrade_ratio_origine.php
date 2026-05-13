@@ -1,4 +1,23 @@
 <?php
+/**
+ * Scénario d'upgrade/downgrade de ratio d'abonnement Mahalo
+ *
+ * WORKFLOW:
+ *
+ * ÉTAPE 1: Préparation du prorata
+ *   - Interroger Mahalo sur le crédit à récupérer
+ *   - Calculer le montant total à faire payer
+ *   - Présenter un récapitulatif au client
+ *
+ * ÉTAPE 2: Une fois le règlement ok du client
+ *   - Créer la nouvelle formule variabilisée
+ *   - Mahalo crée automatiquement sa facture correspondante
+ *   - Appliquer les crédits sur la facture
+ *
+ * ÉTAPE 3: Finir l'upgrade
+ *   - Créer le règlement final du client sur la facture pour la solder
+ */
+
 require_once("../resttbs.php");
 
 // /!\ *******  Limitations ****** /!\
