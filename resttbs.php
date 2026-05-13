@@ -1,6 +1,6 @@
 <?php
 	if(!@include("param.php")) die("Pour utiliser les exemples, renommer param.exemple.php et renseignez les valeurs requises");
-	header( 'content-type: text/html; charset= iso-8859-1' );
+	header( 'content-type: text/html; charset= utf-8' );
 	
 	$urls = [
 		"PROD" => [
@@ -18,6 +18,10 @@
 		"LOCAL" => [
 				"PORTAL" => "https://localhost:8443/aboweb-portal/oauth/token",
 				"WS" => "https://localhost:8443/aboweb-ws"
+		],
+		"LOCALDOCKER" => [
+			"PORTAL" => "https://host.docker.internal:8443/aboweb-portal/oauth/token",
+			"WS" => "https://host.docker.internal:8443/aboweb-ws"
 		]
 	];
 	
@@ -96,7 +100,7 @@
 		return callApi($urls[TARGET]["WS"].$url, $data_string, "PATCH", $headers);
 	}
 
-	function callApi($url, $data_string, $verb="GET", $headers, $json=true, $token=false) {
+	function callApi($url, $data_string, $verb="GET", $headers=array(), $json=true, $token=false) {
 		
 		$curl = curl_init();
 
@@ -127,11 +131,7 @@
 		$response = curl_exec($curl);
 		$executionEndTime = microtime(true);
 		$seconds = $executionEndTime - $executionStartTime;
-		if($json === true){ // on n'affiche pas de message pour le pdf (cas ou on appelle le WS Token)
-			print "<div><pre>REPONSE $verb $url en $seconds secondes</pre></div>";
-            print_rr($response);
-			print "<div><pre>FIN REPONSE</pre></div>";
-		}
+
 		if($json === true || $token === true){
 			$response = json_decode($response);
 		} else {
@@ -142,17 +142,24 @@
 			echo $body;
 			/*
 			## Alternative 1 : contenu transformé en data-url encodé en base64, accessible depuis un lien.
-			
+
 			$contentType = curl_getinfo($curl, CURLINFO_CONTENT_TYPE);
 			echo '<a href="data:'.$contentType.';base64,'.base64_encode($response).'" download="download.pdf">Download</a>';
-			
+
 			## Alternative 2 : enregistrement du contenu dans un répertoire du serveur
-			
+
 			file_put_contents('download.pdf', $response);
-			
+
 			*/
 		}
 		curl_close($curl);
+
+		if($json === true){ // on n'affiche pas de message pour le pdf (cas ou on appelle le WS Token)
+			print "<div><pre>REPONSE $verb $url en $seconds secondes</pre></div>";
+            print_rr($response);
+			print "<div><pre>FIN REPONSE</pre></div>";
+		}
+
 		return $response;
 	}
 
