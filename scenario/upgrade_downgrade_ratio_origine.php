@@ -108,8 +108,7 @@ if(property_exists($response, 'value') && $response->value !== null) {
 						// Préparation du body avec l'abonnement
 						$prorataData = array(
 							"abonnements" => array($abonnement),
-							"articleLignes" => array(),
-							"ratioSurOrigine" => true
+							"articleLignes" => array()
 						);
 
 						print_rr("Appel API /credit/prorata/prepare");
@@ -119,7 +118,8 @@ if(property_exists($response, 'value') && $response->value !== null) {
 							"&typeReglement=".$typeReglement.
 							"&refTarif=".$refTarif.
 							"&codeClient=".$codeClientAbo.
-							"&nbExemplaires=".$nbExemplaires;
+							"&nbExemplaires=".$nbExemplaires.
+							"&ratioSurOrigine=true";
 
 						$response = callApiPost($prorataUrl, $token, $prorataData);
 
