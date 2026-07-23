@@ -104,6 +104,10 @@ if(property_exists($response, 'value') && $response->value !== null) {
 						$refTarif = $formuleCible;
 						$codeClientAbo = $abonnement->codeClient;
 						$nbExemplaires = $abonnement->nbExemplaires;
+						$abonnement->pns = null;
+						$abonnement->dns = null;
+						$abonnement->dateDebutAbonnement = null;
+						$abonnement->dateFinAbonnement = null;
 
 						// Préparation du body avec l'abonnement
 						$prorataData = array(
