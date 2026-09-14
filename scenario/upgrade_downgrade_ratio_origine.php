@@ -171,7 +171,8 @@ if(property_exists($response, 'value') && $response->value !== null) {
 								"refAncienAbo" => $abonnement->refAbonnement,
 								"isUpgradeDowngrade" => true,
 								"createFacture" => true,
-								"typeReglement" => "1"
+								"typeReglement" => "1",
+								"montantFdp" => $prorataResult->montantFdp
 							);
 
 							$response = callApiPost("/editeur/".REF_EDITEUR."/formule", $token, $formuleData);
@@ -199,45 +200,6 @@ if(property_exists($response, 'value') && $response->value !== null) {
 								// POINT D'ARRET - Commenter la ligne ci-dessous pour continuer
 								// endHTML();
 								// exit;
-
-								// ÉTAPE 2bis: Correction du FDP (bug pré-existant : le FDP est recalculé au tarif plein
-								// lors de la création automatique de la facture, sans tenir compte du prorata calculé
-								// à l'étape 1 - cf ABOWEB-18712). On corrige la ligne FDP auto-générée avec le montant
-								// proratisé, en forçant le montant pour qu'il ne soit pas recalculé.
-								if(property_exists($prorataResult, 'montantFdp') && $prorataResult->montantFdp !== null) {
-									print_rr("Correction du FDP proratisé sur la facture...");
-									$response = callApiGet("/editeur/".REF_EDITEUR."/lignefacture/details/".$refFacture, $token);
-
-									if(property_exists($response, 'value')) {
-										$ligneFdp = null;
-										foreach($response->value as $ligne) {
-											if(property_exists($ligne, 'fraisDePort') && $ligne->fraisDePort === true) {
-												$ligneFdp = $ligne;
-												break;
-											}
-										}
-
-										if($ligneFdp !== null) {
-											$fdp = $prorataResult->montantFdp;
-											$ligneFdp->forceMontant = true;
-											$ligneFdp->puHt = $fdp->montantFraisPortHt;
-											$ligneFdp->puTtc = $fdp->montantFraisPortTtc;
-											$ligneFdp->montantHt = $fdp->montantFraisPortHt;
-											$ligneFdp->montantTtc = $fdp->montantFraisPortTtc;
-
-											$response = callApiPut("/editeur/".REF_EDITEUR."/lignefacture/".$ligneFdp->refLigneFacture, $token, $ligneFdp);
-
-											if(property_exists($response, 'value')) {
-												print_rr("FDP corrigé : ".$fdp->montantFraisPortTtc."€ (plein tarif remplacé par le montant proratisé)");
-											} else {
-												print_rr("ERREUR lors de la correction du FDP");
-											}
-										} else {
-											print_rr("Aucune ligne FDP trouvée sur la facture");
-										}
-									}
-									print_rr("");
-								}
 
 								// Lecture de la facture créée
 								print_rr("Lecture de la facture créée...");
