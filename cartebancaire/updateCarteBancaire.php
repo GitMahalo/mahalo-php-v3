@@ -6,6 +6,7 @@
 	$cb["token"] = 'SMLLwsqPLdt'; // token
 	// exemple de token pour une CB SLIMPAY : 'SMLLwsqPLdt'
 	// exemple de token pour une CB STRIPE (customer Stripe) : 'cus_HgjUPRlzIryloH'
+    // exemple de token pour une CB PAYZEN : 0d9cbbd7ff0a123456978af6b61bb122
 	$cb["cbCode"] = 'PBX38687'; // obligatoire pour maj de la cb 
 	$cb["dateVal"] = '2110'; // date d'expiration de la cb au format 'yyMM'
 	$cb["firstNumbers"] = 1234; // premiers chiffres d'une cb - Optionnel
