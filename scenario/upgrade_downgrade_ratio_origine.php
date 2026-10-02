@@ -153,6 +153,7 @@ if(property_exists($response, 'value') && $response->value !== null) {
 								"formule" => array(
 									"refFormule" => null,
 									"codeClient" => $codeClient,
+									"codeTiers" => isset($abonnement->codeTiers) ? $abonnement->codeTiers : null,
 									"refTarif" => $formuleCible,
 									"abonnements" => $prorataResult->abonnements,
 									"articleLignes" => array(),
